@@ -59,10 +59,9 @@ class Context {
     }
 
     void loadDataHandlers(String metaFilePath) {
-        ClassLoader classLoader = this.getClass().getClassLoader();
         Enumeration<URL> urls;
         try {
-            urls = classLoader.getResources(metaFilePath);
+            urls = getClass().getClassLoader().getResources(metaFilePath);
         } catch (IOException e) {
             throw new AtlasRuntimeException(e, "Unable to find data handler meta files at %s", metaFilePath);
         }
@@ -106,10 +105,9 @@ class Context {
     }
 
     void loadTransformations(String metaFilePath) {
-        ClassLoader classLoader = this.getClass().getClassLoader();
         Enumeration<URL> urls;
         try {
-            urls = classLoader.getResources(metaFilePath);
+            urls = getClass().getClassLoader().getResources(metaFilePath);
         } catch (IOException e) {
             throw new AtlasRuntimeException(e, "Unable to find transformations meta files at %s", metaFilePath);
         }
@@ -133,6 +131,7 @@ class Context {
                             BaseTransformation transformation = transformationClass.getDeclaredConstructor().newInstance();
                             // Verify transformation has at least one parameter with a target role
                             boolean targetRoleFound = false;
+                            transformation.parameters();
                             for (Parameter parameter : transformation.parameters()) {
                                 if (parameter.role() == Role.OUTPUT) {
                                     targetRoleFound = true;
