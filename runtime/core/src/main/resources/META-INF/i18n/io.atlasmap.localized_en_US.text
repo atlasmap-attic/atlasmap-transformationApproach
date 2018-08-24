@@ -1,0 +1,30 @@
+#Thu Aug 23 02:28:07 CDT 2018
+None\ of\ the\ transformations\ in\ this\ mapping\ map\ to\ a\ target\ field=None of the transformations in this mapping map to a target field
+No\ source\ documents\ found=No source documents found
+The\ %s\ %s\ was\ automatically\ converted\ to\ the\ %s\ %s=The %s %s was automatically converted to the %s %s
+To=To
+Map=Map
+Output\ property\ %s\ for\ the\ %s\ parameter\ of\ the\ %s\ transformation\ is\ never\ used\ in\ this\ mapping=Output property %s for the %s parameter of the %s transformation is never used in this mapping
+Operand=Operand
+Sum=Sum
+A\ target\ field\ or\ property\ to\ which\ to\ add\ the\ sum\ of\ the\ operands=A target field or property to which to add the sum of the operands
+No\ target\ documents\ found=No target documents found
+Adds\ one\ or\ more\ numberic\ values=Adds one or more numberic values
+Maps\ a\ source\ field,\ property,\ or\ constant\ to\ a\ target\ field=Maps a source field, property, or constant to a target field
+No\ transformations\ have\ been\ added=No transformations have been added
+Operand2=Operand2
+A\ numberic\ source\ field,\ property,\ or\ constant\ to\ add=A numberic source field, property, or constant to add
+Operand1=Operand1
+Add=Add
+From=From
+Mapping=Mapping
+A\ source\ field,\ property,\ or\ constant\ from\ which\ to\ map=A source field, property, or constant from which to map
+A\ target\ field\ or\ property\ to\ which\ to\ map=A target field or property to which to map
+Attempt\ to\ remove\ document\ that\ does\ not\ exist\:\ id\=%s,\ role\=%s=Attempt to remove document that does not exist\: id\=%s, role\=%s
+No\ default\ constructor\ found\ for\ transformation\ %s=No default constructor found for transformation %s
+Unable\ to\ load\ class\ %s\ from\ meta\ file\ %s=Unable to load class %s from meta file %s
+The\ %s\ data\ format\ is\ not\ supported\ for\ a\ %s\ document=The %s data format is not supported for a %s document
+Unable\ to\ create\ data\ handler\ %s=Unable to create data handler %s
+Data\ handler\ %s\ supports\ no\ data\ formats=Data handler %s supports no data formats
+Class\ %s\ in\ meta\ file\ %s\ does\ not\ subclass\ %s=Class %s in meta file %s does not subclass %s
+Mapping\ does\ not\ exist\:\ %s=Mapping does not exist\: %s

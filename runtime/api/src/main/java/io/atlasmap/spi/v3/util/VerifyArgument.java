@@ -23,22 +23,6 @@ import java.util.Map;
  */
 public interface VerifyArgument {
 
-    public static void isNotNull(String name, Object argument) {
-        if (argument == null) {
-            throw new AtlasRuntimeException("The '%s' argument must not be null", name);
-        }
-    }
-
-    public static void isNotEmpty(String name, Object argument) {
-        isNotNull(name, argument);
-        if ((argument instanceof Collection && ((Collection<?>)argument).isEmpty())
-            || argument.toString().isEmpty()
-            || (argument instanceof Map && ((Map<?, ?>)argument).isEmpty())
-            || (argument.getClass().isArray() && ((Object[])argument).length == 0)) {
-            throw new AtlasRuntimeException("The '%s' argument must not be empty", name);
-        }
-    }
-
     /**
      * @param name
      * @param argument
@@ -65,5 +49,28 @@ public interface VerifyArgument {
             throw new AtlasRuntimeException("The '%s' argument must be an instance of %s", name, type);
         }
         return (T)argument;
+    }
+
+    public static void isNotEmpty(String name, Object argument) {
+        isNotNull(name, argument);
+        if ((argument instanceof Collection && ((Collection<?>)argument).isEmpty())
+            || argument.toString().isEmpty()
+            || (argument instanceof Map && ((Map<?, ?>)argument).isEmpty())
+            || (argument.getClass().isArray() && ((Object[])argument).length == 0)) {
+            throw new AtlasRuntimeException("The '%s' argument must not be empty", name);
+        }
+    }
+
+    public static void isNotNegative(String name, Number argument) {
+        isNotNull(name, argument);
+        if (argument.doubleValue() < 0.0) {
+            throw new AtlasRuntimeException("The '%s' argument must not be negative", name);
+        }
+    }
+
+    public static void isNotNull(String name, Object argument) {
+        if (argument == null) {
+            throw new AtlasRuntimeException("The '%s' argument must not be null", name);
+        }
     }
 }

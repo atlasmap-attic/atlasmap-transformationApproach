@@ -30,7 +30,6 @@ import io.atlasmap.spi.v3.util.VerifyArgument;
 
 // TODO global properties
 // TODO Separate runtime and modeler into their own projects
-// TODO i18n
 // TODO java handler fields as getter/setter, name in method, etc.
 // TODO undo/redo
 // TODO new mapping for additional transformations with target field(s)?

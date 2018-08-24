@@ -50,7 +50,6 @@ import io.atlasmap.spi.v3.DataHandler;
 import io.atlasmap.spi.v3.DataHandlerSupport;
 import io.atlasmap.spi.v3.util.AtlasException;
 import io.atlasmap.spi.v3.util.AtlasRuntimeException;
-import io.atlasmap.spi.v3.util.I18n;
 import io.atlasmap.spi.v3.util.VerifyArgument;
 
 /**
@@ -141,7 +140,7 @@ public class MappingDocumentImpl implements MappingDocument {
                 return;
             }
         }
-        throw new AtlasRuntimeException(I18n.localize("Attempt to remove document that does not exist: id=%s, role=%s", id, role));
+        throw new AtlasRuntimeException("Attempt to remove document that does not exist: id=%s, role=%s", id, role);
     }
 
     /**

@@ -48,7 +48,7 @@ public class TestHandler extends DataHandler {
     @Override
     public void setDocument(Object document) {
         if (!"test".equals(document)) {
-            throw new AtlasRuntimeException("Must be 'test'");
+            throw new AtlasRuntimeException("Must be '%s'", "test");
         }
         super.setDocument(VerifyArgument.isInstanceOf("document", document, String.class));
     }
