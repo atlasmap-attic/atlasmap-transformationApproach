@@ -320,6 +320,8 @@
 .MappingSelectionSection .pathContainer { display:inline-block; width:calc(100% - 45px); }
 .MappingSelectionComponent .odd { background-color:#F6F6F6; }
 
+.ExpressionDetailComponent { margin-left:20px; margin-right:20px; width:500px; }
+
 .SelectedMappingSelectionSection, .MappingSelectionComponent .SelectedMappingSelectionSection.odd { background-color:#0088ce; color:#fafafa; border-color:#0088ce; }
 
 .MappingSelectionSection .sourceTargetSection LABEL { display:none; }
