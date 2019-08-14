@@ -83,6 +83,12 @@ export class ExpressionComponent implements OnInit, OnDestroy, OnChanges {
     this.modalWindow.reset();
     this.modalWindow.confirmButtonText = 'OK';
     this.modalWindow.headerText = 'Build Expression';
+    this.modalWindow.nestedComponentInitializedCallback = (mw: ModalWindowComponent) => {
+      const c: ExpressionDetailComponent = mw.nestedComponent as ExpressionDetailComponent;
+      c.selectedField = this.configModel.mappings.activeMapping.sourceFields[0].field;
+      c.expressionModel = this.getExpression();
+      c.modalWindow = this.modalWindow;
+    };
     this.modalWindow.nestedComponentType = ExpressionDetailComponent;
     this.modalWindow.show();
   }

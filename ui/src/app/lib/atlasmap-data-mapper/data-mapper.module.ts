@@ -57,6 +57,7 @@ import { TransitionSelectionComponent } from './components/mapping/transition-se
 import { FocusDirective } from './common/focus.directive';
 import { ExpressionComponent } from './components/expression.component';
 import { ExpressionDetailComponent } from './components/expression-detail.component';
+import { ExpressionSectionComponent } from './components/expression-section.component';
 
 // export services/types for consumers of this module
 export { ApiXsrfInterceptor, ApiHttpXsrfTokenExtractor } from './services/api-xsrf.service';
@@ -131,6 +132,7 @@ export const loggerModuleForRoot: ModuleWithProviders = LoggerModule.forRoot(env
     TemplateEditComponent,
     ExpressionComponent,
     ExpressionDetailComponent,
+    ExpressionSectionComponent,
     FocusDirective,
     ToErrorIconClassPipe
   ],

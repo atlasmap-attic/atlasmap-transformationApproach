@@ -14,9 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 
 import { ModalWindowComponent, ModalWindowValidator } from './modal-window.component';
+import { ExpressionModel } from '../models/expression.model';
+import { Field } from '../models/field.model';
+import { ExpressionSectionComponent } from './expression-section.component';
 
 @Component({
   selector: 'expression-detail',
@@ -26,6 +29,10 @@ import { ModalWindowComponent, ModalWindowValidator } from './modal-window.compo
 export class ExpressionDetailComponent implements ModalWindowValidator {
 
   modalWindow: ModalWindowComponent;
+  selectedField: Field = null;
+  expressionModel: ExpressionModel = null;
+
+  @ViewChildren('expressionSection') sectionComponents: QueryList<ExpressionSectionComponent>;
 
   isDataValid(): boolean {
     return true;
@@ -33,5 +40,8 @@ export class ExpressionDetailComponent implements ModalWindowValidator {
 
   getInitialFocusElement(): ElementRef {
     return undefined;
+  }
+
+  addExpression() {
   }
 }
