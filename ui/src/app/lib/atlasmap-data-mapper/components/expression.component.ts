@@ -21,7 +21,7 @@ import { ExpressionModel, FieldNode, ExpressionUpdatedEvent, TextNode } from '..
 import { Field } from '../models/field.model';
 import { Subscription } from 'rxjs';
 import { ModalWindowComponent } from './modal-window.component';
-import { ExpressionDetailComponent } from './expression-detail.component';
+import { MappingComponent } from './mapping.component';
 
 @Component({
   selector: 'expression',
@@ -82,14 +82,14 @@ export class ExpressionComponent implements OnInit, OnDestroy, OnChanges {
 
     this.modalWindow.reset();
     this.modalWindow.confirmButtonText = 'OK';
-    this.modalWindow.headerText = 'Build Expression';
+    this.modalWindow.headerText = 'Build Mapping';
     this.modalWindow.nestedComponentInitializedCallback = (mw: ModalWindowComponent) => {
-      const c: ExpressionDetailComponent = mw.nestedComponent as ExpressionDetailComponent;
+      const c: MappingComponent = mw.nestedComponent as MappingComponent;
       c.selectedField = this.configModel.mappings.activeMapping.sourceFields[0].field;
       c.expressionModel = this.getExpression();
       c.modalWindow = this.modalWindow;
     };
-    this.modalWindow.nestedComponentType = ExpressionDetailComponent;
+    this.modalWindow.nestedComponentType = MappingComponent;
     this.modalWindow.show();
   }
 

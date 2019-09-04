@@ -1,0 +1,8 @@
+<div>
+  <div>
+  	<input [(ngModel)]="name" placeholder="Mapping"/>
+  </div>
+  <div *ngFor="let function of functions">
+    <function [functions]="functions" [selectedFunction]="function" (add)="onAdd()"></function>
+  </div>
+</div>

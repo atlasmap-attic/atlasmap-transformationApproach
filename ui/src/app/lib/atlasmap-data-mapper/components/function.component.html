@@ -1,4 +1,12 @@
-<div (click)="handleMouseClick($event)">
+<div class="MappingFieldSection" (click)="handleMouseClick($event)">
+  <button class="btn btn-primary addButton" (click)="addFunction()">
+    <i class="fa fa-plus"></i>
+  </button>
+  <select [ngModel]="selectedFunction">
+    <option *ngFor="let availableFunction of availableFunctions()" selected="availableFunction === selectedFunction">
+      {{ availableFunction }}
+    </option>
+  </select>
 <!--
   <div class="numberWrapper">
     <div class="number">{{ outputNumber + 1 }}</div>

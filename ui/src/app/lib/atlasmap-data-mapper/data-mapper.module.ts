@@ -56,8 +56,8 @@ import { LookupTableComponent } from './components/mapping/lookup-table.componen
 import { TransitionSelectionComponent } from './components/mapping/transition-selection.component';
 import { FocusDirective } from './common/focus.directive';
 import { ExpressionComponent } from './components/expression.component';
-import { ExpressionDetailComponent } from './components/expression-detail.component';
-import { ExpressionSectionComponent } from './components/expression-section.component';
+import { MappingComponent } from './components/mapping.component';
+import { FunctionComponent } from './components/function.component';
 
 // export services/types for consumers of this module
 export { ApiXsrfInterceptor, ApiHttpXsrfTokenExtractor } from './services/api-xsrf.service';
@@ -131,8 +131,8 @@ export const loggerModuleForRoot: ModuleWithProviders = LoggerModule.forRoot(env
     NamespaceListComponent,
     TemplateEditComponent,
     ExpressionComponent,
-    ExpressionDetailComponent,
-    ExpressionSectionComponent,
+    MappingComponent,
+    FunctionComponent,
     FocusDirective,
     ToErrorIconClassPipe
   ],
@@ -162,7 +162,7 @@ export const loggerModuleForRoot: ModuleWithProviders = LoggerModule.forRoot(env
     ClassNameComponent,
     ConstantFieldEditComponent,
     TemplateEditComponent,
-    ExpressionDetailComponent,
+    MappingComponent,
   ],
   bootstrap: [DataMapperAppExampleHostComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

@@ -14,34 +14,39 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { ModalWindowComponent, ModalWindowValidator } from './modal-window.component';
 import { ExpressionModel } from '../models/expression.model';
 import { Field } from '../models/field.model';
-import { ExpressionSectionComponent } from './expression-section.component';
+import { Function } from '../models/function.model';
 
 @Component({
-  selector: 'expression-detail',
-  templateUrl: './expression-detail.component.html',
+  selector: 'mapping',
+  templateUrl: './mapping.component.html',
 })
 
-export class ExpressionDetailComponent implements ModalWindowValidator {
+export class MappingComponent implements ModalWindowValidator, OnInit {
 
+  name = 'Mapping';
   modalWindow: ModalWindowComponent;
   selectedField: Field = null;
   expressionModel: ExpressionModel = null;
+  functions: Function[];
 
-  @ViewChildren('expressionSection') sectionComponents: QueryList<ExpressionSectionComponent>;
-
-  isDataValid(): boolean {
-    return true;
+  onAdd() {
+    this.functions.push(null);
   }
 
   getInitialFocusElement(): ElementRef {
     return undefined;
   }
 
-  addExpression() {
+  isDataValid(): boolean {
+    return true;
+  }
+
+  ngOnInit() {
+    this.functions = [ Function.MAP ];
   }
 }
