@@ -18,9 +18,12 @@ package io.atlasmap.functions;
 import java.util.List;
 
 import io.atlasmap.core.BaseFunctionFactory;
+import io.atlasmap.core.BaseFunctionParameter;
 import io.atlasmap.expression.Expression;
 import io.atlasmap.expression.internal.ComparisonExpression;
 import io.atlasmap.expression.parser.ParseException;
+import io.atlasmap.spi.FunctionParameter;
+import io.atlasmap.v2.FieldType;
 
 public class LT extends BaseFunctionFactory {
 
@@ -32,4 +35,43 @@ public class LT extends BaseFunctionFactory {
         return ComparisonExpression.createLessThan(args.get(0), args.get(1));
     }
 
+    @Override
+    public String getName() {
+        return "Is less than";
+    }
+
+    @Override
+    public String description() {
+        return "Returns true if argument 1 is less than argument 2, false otherwise";
+    }
+
+    @Override
+    public FunctionParameter[] parameters() {
+        return new FunctionParameter[] {
+                new BaseFunctionParameter() {
+
+                    @Override
+                    public String name() {
+                        return "Argument 1";
+                    }
+
+                    @Override
+                    public FieldType type() {
+                        return FieldType.NUMBER;
+                    }
+                },
+                new BaseFunctionParameter() {
+
+                    @Override
+                    public String name() {
+                        return "Argument 2";
+                    }
+
+                    @Override
+                    public FieldType type() {
+                        return FieldType.NUMBER;
+                    }
+                }
+        };
+    }
 }

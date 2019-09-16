@@ -18,8 +18,11 @@ package io.atlasmap.functions;
 import java.util.List;
 
 import io.atlasmap.core.BaseFunctionFactory;
+import io.atlasmap.core.BaseFunctionParameter;
 import io.atlasmap.expression.Expression;
 import io.atlasmap.expression.parser.ParseException;
+import io.atlasmap.spi.FunctionParameter;
+import io.atlasmap.v2.FieldType;
 
 public class TOLOWER extends BaseFunctionFactory {
 
@@ -38,4 +41,31 @@ public class TOLOWER extends BaseFunctionFactory {
         };
     }
 
+    @Override
+    public String description() {
+        return "Converts text to lowercase";
+    }
+
+    @Override
+    public String getName() {
+        return "Lowercase";
+    }
+
+    @Override
+    public FunctionParameter[] parameters() {
+        return new FunctionParameter[] {
+                new BaseFunctionParameter() {
+
+                    @Override
+                    public String name() {
+                        return "Text";
+                    }
+
+                    @Override
+                    public FieldType type() {
+                        return FieldType.STRING;
+                    }
+                }
+        };
+    }
 }

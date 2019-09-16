@@ -3,8 +3,10 @@ package io.atlasmap.functions;
 import java.util.List;
 
 import io.atlasmap.core.BaseFunctionFactory;
+import io.atlasmap.core.BaseFunctionParameter;
 import io.atlasmap.expression.Expression;
 import io.atlasmap.expression.parser.ParseException;
+import io.atlasmap.spi.FunctionParameter;
 
 public class MAP extends BaseFunctionFactory {
 
@@ -18,6 +20,36 @@ public class MAP extends BaseFunctionFactory {
         return (ctx) -> {
             // TODO map source to target
             return null;
+        };
+    }
+
+    @Override
+    public String getName() {
+        return "Map";
+    }
+
+    @Override
+    public String description() {
+        return "Maps the source argument to a target model field";
+    }
+
+    @Override
+    public FunctionParameter[] parameters() {
+        return new FunctionParameter[] {
+                new BaseFunctionParameter() {
+
+                    @Override
+                    public String name() {
+                        return "Source";
+                    }
+                },
+                new BaseFunctionParameter() {
+
+                    @Override
+                    public String name() {
+                        return "Source";
+                    }
+                }
         };
     }
 }
