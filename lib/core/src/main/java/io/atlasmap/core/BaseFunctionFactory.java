@@ -19,8 +19,8 @@ import io.atlasmap.spi.FunctionFactory;
 
 public abstract class BaseFunctionFactory implements FunctionFactory {
 
+    @Override
     public String getName() {
         return getClass().getSimpleName();
     }
-
 }
