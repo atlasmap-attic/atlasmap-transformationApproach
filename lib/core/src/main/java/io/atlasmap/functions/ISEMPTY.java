@@ -58,7 +58,7 @@ public class ISEMPTY extends BaseFunctionFactory {
 
     @Override
     public String getName() {
-        return "Is empty?";
+        return "IsEmpty";
     }
 
     @Override

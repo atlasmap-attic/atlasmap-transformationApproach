@@ -21,7 +21,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import io.atlasmap.expression.ExpressionException;
 import io.atlasmap.v2.Expression;
 
 public class ExpressionFieldActionTest {
@@ -66,7 +65,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testLT() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(LT(${0}, ${1}), ${0}, ${1})");
+        action.setExpression("IF(IsLessThan(${0}, ${1}), ${0}, ${1})");
         assertEquals(10, ExpressionFieldAction.process(action, Arrays.asList(10, 100)));
         assertEquals(100, ExpressionFieldAction.process(action, Arrays.asList(1000, 100)));
         assertEquals(-10, ExpressionFieldAction.process(action, Arrays.asList(10, -10)));
@@ -79,14 +78,14 @@ public class ExpressionFieldActionTest {
     @Test
     public void testTOLOWER() throws Exception {
         Expression action = new Expression();
-        action.setExpression("TOLOWER(${0})");
+        action.setExpression("Lowercase(${0})");
         assertEquals("qwerty", ExpressionFieldAction.process(action, Arrays.asList("qWeRtY")));
     }
 
     @Test
     public void testISEMPTY() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(ISEMPTY(${0}), 'empty', 'not empty')");
+        action.setExpression("If(IsEmpty(${0}), 'empty', 'not empty')");
         assertEquals("empty", ExpressionFieldAction.process(action, Arrays.asList((Object)null)));
         assertEquals("empty", ExpressionFieldAction.process(action, Arrays.asList("")));
         assertEquals("not empty", ExpressionFieldAction.process(action, Arrays.asList(" ")));

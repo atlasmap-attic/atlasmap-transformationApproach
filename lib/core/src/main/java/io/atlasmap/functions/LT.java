@@ -42,7 +42,7 @@ public class LT extends BaseFunctionFactory {
 
     @Override
     public String getName() {
-        return "Is less than?";
+        return "IsLessThan";
     }
 
     @Override
