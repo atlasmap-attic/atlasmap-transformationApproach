@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2017 Red Hat, Inc.
+ * Copyright (C) 2019 Red Hat, Inc.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,33 +22,30 @@ import io.atlasmap.core.BaseFunctionParameter;
 import io.atlasmap.expression.Expression;
 import io.atlasmap.expression.parser.ParseException;
 import io.atlasmap.spi.FunctionParameter;
-import io.atlasmap.v2.FieldType;
 
-public class TOLOWER extends BaseFunctionFactory {
+public class MAP extends BaseFunctionFactory {
 
     @Override
     public Expression create(List<Expression> args) throws ParseException {
-        if (args.size() != 1) {
-            throw new ParseException("The '" + getName() + "' function expects 1 argument.");
+        if (args.size() != 2) {
+            throw new ParseException("The '" + getName() + "' function expects 2 arguments.");
         }
-        Expression arg = args.get(0);
+        Expression sourceExpression = args.get(0);
+        Expression targetExpression = args.get(1);
         return (ctx) -> {
-            Object value = arg.evaluate(ctx);
-            if (value == null) {
-                return null;
-            }
-            return value.toString().toLowerCase();
+            // TODO: map source to target
+            return null;
         };
     }
 
     @Override
-    public String description() {
-        return "Converts text to lowercase.";
+    public String getName() {
+        return "Map";
     }
 
     @Override
-    public String getName() {
-        return "Lowercase";
+    public String description() {
+        return "Maps the source argument to a target model field.";
     }
 
     @Override
@@ -58,12 +55,13 @@ public class TOLOWER extends BaseFunctionFactory {
 
                     @Override
                     public String name() {
-                        return "Text";
+                        return "Source";
                     }
+                }, new BaseFunctionParameter() {
 
                     @Override
-                    public FieldType type() {
-                        return FieldType.STRING;
+                    public String name() {
+                        return "Target";
                     }
                 }
         };

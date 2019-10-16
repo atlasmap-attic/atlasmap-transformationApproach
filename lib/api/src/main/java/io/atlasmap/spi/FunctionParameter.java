@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2017 Red Hat, Inc.
+ * Copyright (C) 2019 Red Hat, Inc.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,15 @@
  */
 package io.atlasmap.spi;
 
-import java.util.List;
+import io.atlasmap.v2.FieldType;
 
-import io.atlasmap.expression.Expression;
-import io.atlasmap.expression.parser.ParseException;
+public interface FunctionParameter {
 
-public interface FunctionFactory {
+    String name();
 
-    String getName();
+    FieldType type();
 
-    Expression create(List<Expression> args) throws ParseException;
+    boolean optional();
 
-    String description();
-
-    FunctionParameter[] parameters();
+    boolean repeatable();
 }

@@ -20,6 +20,8 @@ import { MappingModel, MappedField } from '../models/mapping.model';
 import { ExpressionModel, FieldNode, ExpressionUpdatedEvent, TextNode } from '../models/expression.model';
 import { Field } from '../models/field.model';
 import { Subscription } from 'rxjs';
+import { ModalWindowComponent } from './modal-window.component';
+import { MappingComponent } from './mapping.component';
 
 @Component({
   selector: 'expression',
@@ -35,6 +37,9 @@ export class ExpressionComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   mapping: MappingModel;
+
+  @Input()
+  modalWindow: ModalWindowComponent;
 
   @ViewChild('expressionMarkupRef')
   markup: ElementRef;
@@ -74,6 +79,18 @@ export class ExpressionComponent implements OnInit, OnDestroy, OnChanges {
     });
     this.updateExpressionMarkup();
     this.moveCaretToEnd();
+
+    this.modalWindow.reset();
+    this.modalWindow.confirmButtonText = 'OK';
+    this.modalWindow.headerText = 'Build Mapping';
+    this.modalWindow.nestedComponentInitializedCallback = (mw: ModalWindowComponent) => {
+      const c: MappingComponent = mw.nestedComponent as MappingComponent;
+      c.selectedField = this.configModel.mappings.activeMapping.sourceFields[0].field;
+      c.expressionModel = this.getExpression();
+      c.modalWindow = this.modalWindow;
+    };
+    this.modalWindow.nestedComponentType = MappingComponent;
+    this.modalWindow.show();
   }
 
   ngOnChanges() {
