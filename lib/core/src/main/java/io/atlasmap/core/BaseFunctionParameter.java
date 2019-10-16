@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2017 Red Hat, Inc.
+ * Copyright (C) 2019 Red Hat, Inc.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.atlasmap.spi;
+package io.atlasmap.core;
 
-import java.util.List;
+import io.atlasmap.spi.FunctionParameter;
+import io.atlasmap.v2.FieldType;
 
-import io.atlasmap.expression.Expression;
-import io.atlasmap.expression.parser.ParseException;
+public abstract class BaseFunctionParameter implements FunctionParameter {
 
-public interface FunctionFactory {
+    @Override
+    public FieldType type() {
+        return FieldType.ANY;
+    }
 
-    String getName();
+    @Override
+    public boolean optional() {
+        return false;
+    }
 
-    Expression create(List<Expression> args) throws ParseException;
-
-    String description();
-
-    FunctionParameter[] parameters();
+    @Override
+    public boolean repeatable() {
+        return false;
+    }
 }

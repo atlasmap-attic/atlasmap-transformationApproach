@@ -34,7 +34,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testIF() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} == ${1}, 'same', 'not same')");
+        action.setExpression("If(${0} == ${1}, 'same', 'not same')");
         assertEquals("same", ExpressionFieldAction.process(action, Arrays.asList(10, 10)));
         assertEquals("not same", ExpressionFieldAction.process(action, Arrays.asList(100, 10)));
     }
@@ -42,7 +42,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testIFInteger() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} == 123, 123, 456)");
+        action.setExpression("If(${0} == 123, 123, 456)");
         assertEquals(123, ExpressionFieldAction.process(action, Arrays.asList(123)));
         assertEquals(456, ExpressionFieldAction.process(action, Arrays.asList(789)));
     }
@@ -50,7 +50,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testIFIntegerZero() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} == 0, 0, 1)");
+        action.setExpression("If(${0} == 0, 0, 1)");
         assertEquals(0, ExpressionFieldAction.process(action, Arrays.asList(0)));
         assertEquals(1, ExpressionFieldAction.process(action, Arrays.asList(1)));
     }
@@ -58,7 +58,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testGT() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} > ${1}, ${0}, ${1})");
+        action.setExpression("If(${0} > ${1}, ${0}, ${1})");
         assertEquals(1000, ExpressionFieldAction.process(action, Arrays.asList(1000, 100)));
         assertEquals(10000, ExpressionFieldAction.process(action, Arrays.asList(1000, 10000)));
         assertEquals(10, ExpressionFieldAction.process(action, Arrays.asList(10, -10)));
@@ -67,11 +67,11 @@ public class ExpressionFieldActionTest {
     @Test
     public void testLT() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(LT(${0}, ${1}), ${0}, ${1})");
+        action.setExpression("If(IsLessThan(${0}, ${1}), ${0}, ${1})");
         assertEquals(10, ExpressionFieldAction.process(action, Arrays.asList(10, 100)));
         assertEquals(100, ExpressionFieldAction.process(action, Arrays.asList(1000, 100)));
         assertEquals(-10, ExpressionFieldAction.process(action, Arrays.asList(10, -10)));
-        action.setExpression("IF(${0} < ${1}, ${0}, ${1})");
+        action.setExpression("If(${0} < ${1}, ${0}, ${1})");
         assertEquals(10, ExpressionFieldAction.process(action, Arrays.asList(10, 100)));
         assertEquals(100, ExpressionFieldAction.process(action, Arrays.asList(1000, 100)));
         assertEquals(-10, ExpressionFieldAction.process(action, Arrays.asList(10, -10)));
@@ -80,14 +80,14 @@ public class ExpressionFieldActionTest {
     @Test
     public void testTOLOWER() throws Exception {
         Expression action = new Expression();
-        action.setExpression("TOLOWER(${0})");
+        action.setExpression("Lowercase(${0})");
         assertEquals("qwerty", ExpressionFieldAction.process(action, Arrays.asList("qWeRtY")));
     }
 
     @Test
     public void testISEMPTY() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(ISEMPTY(${0}), 'empty', 'not empty')");
+        action.setExpression("If(IsEmpty(${0}), 'empty', 'not empty')");
         assertEquals("empty", ExpressionFieldAction.process(action, Arrays.asList((Object)null)));
         assertEquals("empty", ExpressionFieldAction.process(action, Arrays.asList("")));
         assertEquals("not empty", ExpressionFieldAction.process(action, Arrays.asList(" ")));
@@ -129,7 +129,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testAnd() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} == ${1} && ${0} == ${2}, 'all same', 'not all same')");
+        action.setExpression("If(${0} == ${1} && ${0} == ${2}, 'all same', 'not all same')");
         assertEquals("all same", ExpressionFieldAction.process(action, Arrays.asList("foo","foo", "foo")));
         assertEquals("all same", ExpressionFieldAction.process(action, Arrays.asList(1, 1, 1)));
         assertEquals("not all same", ExpressionFieldAction.process(action, Arrays.asList("foo","foo", "fo")));
@@ -139,7 +139,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testOr() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} == ${1} || ${0} == ${2}, 'some of them are same', 'all different')");
+        action.setExpression("If(${0} == ${1} || ${0} == ${2}, 'some of them are same', 'all different')");
         assertEquals("some of them are same", ExpressionFieldAction.process(action, Arrays.asList("foo","foo", "fo")));
         assertEquals("some of them are same", ExpressionFieldAction.process(action, Arrays.asList(1, 1, 2)));
         assertEquals("all different", ExpressionFieldAction.process(action, Arrays.asList("foo","foo0", "fo")));
@@ -149,7 +149,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testNot() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(!ISEMPTY(${0}), 'not empty', 'empty')");
+        action.setExpression("If(!IsEmpty(${0}), 'not empty', 'empty')");
         assertEquals("not empty", ExpressionFieldAction.process(action, Arrays.asList("foo")));
         assertEquals("not empty", ExpressionFieldAction.process(action, Arrays.asList(" ")));
         assertEquals("empty", ExpressionFieldAction.process(action, Arrays.asList("")));
@@ -159,7 +159,7 @@ public class ExpressionFieldActionTest {
     @Test
     public void testNull() throws Exception {
         Expression action = new Expression();
-        action.setExpression("IF(${0} == null, 'null', 'not null')");
+        action.setExpression("If(${0} == null, 'null', 'not null')");
         assertEquals("null", ExpressionFieldAction.process(action, Arrays.asList((Object)null)));
         assertEquals("not null", ExpressionFieldAction.process(action, Arrays.asList("")));
     }
@@ -179,13 +179,13 @@ public class ExpressionFieldActionTest {
     public void testNumberField() throws Exception {
         Expression action = new Expression();
         Number integer = 1;
-        action.setExpression("IF(${0} == 1, '1', 'not 1')");
+        action.setExpression("If(${0} == 1, '1', 'not 1')");
         assertEquals("1", ExpressionFieldAction.process(action, Arrays.asList(integer)));
         BigInteger bigInt = new BigInteger("1");
-        action.setExpression("IF(${0} == 1, 'bigint 1', 'not bigint 1')");
+        action.setExpression("If(${0} == 1, 'bigint 1', 'not bigint 1')");
         assertEquals("bigint 1", ExpressionFieldAction.process(action, Arrays.asList(bigInt)));
         BigDecimal bigDec = new BigDecimal("1");
-        action.setExpression("IF(${0} == 1, 'bigdecimal 1', 'not bigdecimal 1')");
+        action.setExpression("If(${0} == 1, 'bigdecimal 1', 'not bigdecimal 1')");
         assertEquals("bigdecimal 1", ExpressionFieldAction.process(action, Arrays.asList(bigDec)));
     }
 
