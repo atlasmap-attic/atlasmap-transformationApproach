@@ -27,14 +27,18 @@ export class FunctionComponent {
   @Output() add = new EventEmitter<string>();
 
   addFunction() {
-    this.selectedFunction = null;
     this.add.emit(null);
   }
 
-  availableFunctions(): Function[] {
-    const functions = Object.keys(Function).filter(value => isNaN(Number(value)) === false).map(key => Function[key]);
-    functions.unshift(null);
-    return functions;
+  availableFunctions(): String[] {
+    const availFuncNames = Array.from(Function.AVAILABLE_FUNCTIONS, x => x.name);
+    availFuncNames.unshift(null);
+    return availFuncNames;
+  }
+
+  functionSelected(event: Event) {
+    const options = event.target['options'];
+    this.selectedFunction = Function.AVAILABLE_FUNCTIONS.find(f => f.name === options[options.selectedIndex].text);
   }
 
   handleMouseClick(event: MouseEvent) {

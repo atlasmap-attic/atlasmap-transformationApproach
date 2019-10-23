@@ -2,11 +2,19 @@
   <button class="btn btn-primary addButton" (click)="addFunction()">
     <i class="fa fa-plus"></i>
   </button>
-  <select [ngModel]="selectedFunction">
-    <option *ngFor="let availableFunction of availableFunctions()" selected="availableFunction === selectedFunction">
+  <select (change)="functionSelected($event)">
+    <option *ngFor="let availableFunction of availableFunctions()" 
+            [selected]="selectedFunction != null && availableFunction === selectedFunction.name">
       {{ availableFunction }}
     </option>
   </select>
+  <div *ngIf="selectedFunction">
+    <div *ngFor="let arg of selectedFunction.parameters">
+      {{ arg }}: 
+      <input type="text"/>
+    </div>
+  </div>
+</div>
 <!--
   <div class="numberWrapper">
     <div class="number">{{ outputNumber + 1 }}</div>
@@ -43,4 +51,3 @@
   </div>
   <div class="clear"></div>
 -->
-</div>
