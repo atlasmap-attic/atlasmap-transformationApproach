@@ -46,7 +46,7 @@ public class IF extends BaseFunctionFactory {
 
     @Override
     public String description() {
-        return "Tests a condition and evaluates the 'then' expression if true of the 'else' expression if false.";
+        return "Tests a condition and evaluates the 'then' expression if true or the 'else' expression if false.";
     }
 
     @Override

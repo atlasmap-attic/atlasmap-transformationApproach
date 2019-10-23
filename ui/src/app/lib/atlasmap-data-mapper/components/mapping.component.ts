@@ -44,6 +44,6 @@ export class MappingComponent implements ModalWindowValidator, OnInit {
   }
 
   ngOnInit() {
-    this.functions = [ Function.MAP ];
+    this.functions = [ Function.AVAILABLE_FUNCTIONS[0] ];
   }
 }
