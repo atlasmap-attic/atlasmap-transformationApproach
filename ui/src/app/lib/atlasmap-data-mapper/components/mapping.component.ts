@@ -32,7 +32,7 @@ export class MappingComponent implements ModalWindowValidator, OnInit {
   functions: Function[];
 
   onAdd() {
-    this.functions.push(null);
+    this.functions.unshift(null);
   }
 
   getInitialFocusElement(): ElementRef {
