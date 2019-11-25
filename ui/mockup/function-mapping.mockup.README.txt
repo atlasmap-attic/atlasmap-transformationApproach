@@ -1,0 +1,314 @@
+A while ago, Hiram introduced us to a library he created that offered a series
+of built-in functions that worked with different types of data expressions,
+which we incorporated in AtlasMap. I believe this library offers us a very
+good foundation for building transformations in both the runtime and UI. It's
+underlying structure looks very similar to the LISP language, or more commonly
+known, formulas seen in various popular spreadsheets. The really cool thing is
+it offers us a way to build all of the same types of functionality we currently
+have via field actions, but in a much simpler manner and with even more
+flexibility. 
+
+Using this library as its core, I believe I have an approach for the user's
+experience to AtlasMap, i.e., its UI, that is simpler, less confusing, and more 
+intuitive than our current approach, and, most importantly, maintains our 
+initial goal of targeting the citizen user for our product.
+
+I am starting with this premise in mind: Almost any mapping tool can deal with
+moving data from a sources to targets. Every one of our competitors can do this
+with ease. Beyond simple concerns such as dealing with lists, maps, and
+repeatable objects, the real power of a mapping tool is in its transformation
+capabilities.
+
+Motivation
+-----------
+
+I believe our current design suffers from several design flaws:
+
+- Mappings require the user to choose all the source and target fields involved
+  in the mapping up front, which prevents the ability to use fields from 
+  sources that can be involved in a mapping, but are not themselves mapped to
+  the target of that mapping. Consider, for example, the desire to use fields in
+  the conditional part of decision logic only, and not necessarily mappings.
+
+- We do not support any type of intermittent state for transformations, which
+  means any transformations that might require a result that doesn't match the
+  target's data type is problematic.
+
+- Because the focus is on sources and targets, rather then the flow of 
+  transformations between them, decision logic related to which targets should
+  be involved is difficult to both implement and remain easy to understand by
+  the user.
+
+- Because transformations are applied only to specific fields and without
+  interim state, we cannot combine or split fields without losing most of the
+  ability to continue transforming data before or after such actions,
+  respectively.
+
+- There are separate transformations that can be applied to source vs. target
+  fields, with no apparent reason for this distinction to the user, making it
+  confusing and unclear how or when target transformations should be used.
+
+- Worse, target transformations in particular cannot involve any change in data
+  type, other than widening or narrowing conversions, between the input and
+  output for that transformation.
+
+- Due to the focus on fields rather than transformations I mentioned previously,
+  there is no obvious data flow involved in mappings from beginning to end,
+  which is contrary to most other popular mapping tools.
+
+- Despite how powerful Hiram's function library may be for representing
+  transformation in the runtime, exposing their structure to the user via
+  spreadsheet-like formulas in the UI seems counter-intuitive to the idea of
+  making the tool usable by a citizen user. Everyone 'normal' employee I've
+  ever talked with at any company automatically considers the guy that
+  understands these LISP-like formulas to be their tech-gurus. In other words,
+  they seem very far from being in any way citizen-user friendly.
+
+- Moreover, the inclusion of these functions at the top of our application,
+  outside of the mappings view, but still interacting with our field actions, is
+  very confusing. The user is not shown in any way how or when these
+  function-based transformations come into play and how, if at all, they
+  interact with the other field action-based transformations.
+
+As I previously mentioned, this mockup demonstrates an alternative approach that
+I believe addresses each of these concerns, and results in an overall better
+user experience. It's basically a proposal that we use Hiram's function library
+in a different way, entirely replacing the existing field actions implemented,
+while continuing to offer the user a similar graphical approach to creating
+mappings and transformations as we currently do, but without being exposed to
+the underlying implementation and avoiding the need for the user to understand
+LISP-like formulas.
+
+Mockup Description
+------------------
+
+Keep in mind that while I've done what I can to make this mockup look as
+functional as a real application, it's still just a mockup, built with only
+HTML, CSS, and some simple javascript to simulate certain common user actions.
+
+The mockup is simulating a simple scenario, mapping data from a single source
+model to a single target model, with both models having a similar structure -
+the classic Books model.
+
+I've added a few key functions to our existing function library, including some
+basic and fundamental functions such as Map, Combine, and Split, and MapIf.
+These functions are key in providing the ability to change how mappings appear
+to the user such that the transformations, i.e., functions, are the focus of
+mappings.
+
+Now, I'll go through a walk-through of the mockup...
+
+Mapping Walk-through
+-------------------
+
+1)  First, I'll click the 'author' field in the source model, just like a user
+    would do with the current AtlasMap.
+
+  Notice what occurs automatically:
+
+  - The source field is highlighted as selected.
+  - A new Map transformation is added.
+  - The Source parameter type is set to a field reference.
+  - The Source parameter field is set to the selected field.
+  - A Preview value is set to 'John H. Doe', which is presumed sample data set
+    on 'author'.
+  - The Target parameter field is given focus since it requires a value.
+  - The transformation's applicable parameters appear below its dropdown.
+  - The Target parameter's label is set to red since its field value is invalid,
+    in this case due to a missing required value.
+
+  You'll also notice the following:
+
+  - Non-informational action buttons/links/etc. related to each transformation
+    are normally hidden and only appear within a transformation box when a user
+    moves the mouse or focus within its box.
+
+  - The mapping itself will show an edit button that allows the user to name the
+    mapping something other than the default 'Mapping'.
+    
+  - To the far right, a remove appears allowing the user to delete the entire
+    mapping.
+
+  - Each transformation box first contains a dropdown for the user to select
+    which transformation to use. I've only included a few transformations for
+    demonstration; this list would obviously be much longer in an actual
+    implementation, and might actually be better suited as a content-assisted
+    text box.
+
+  - A remove icon appears to the far right of each transformation to allow the
+    user to delete it.
+
+  - Any transformation can be given a name using the edit button next to the
+    transformation dropdown, which will be used whenever referenced by
+    subsequent transformations. An example of this can be seen in the Split
+    transformation, and subsequent references to it, in the final mapping shown
+    at the end of this walkthrough.
+
+  - After most parameter labels is a parameter type dropdown, which allows the
+    user to select whether they will enter a value ('='), field reference ('/'),
+    property ('$'), or transformation ('f'). This implies that transformations
+    can involve any field, property, value, or other available transformation.
+    Note, the particular symbols I used are somewhat arbitrary.
+    
+  - The Map Target parameter types only allow for a field or property reference,
+    as mapping to a value or transformation doesn't make sense.
+
+  - Each parameter type dropdown is followed by a parameter value input box.
+    These boxes all support both content-assisted text entry, along with 
+    drag-&-drop from an appropriate source (e.g. fields from models, other
+    transformations in mappings, properties, etc.).
+
+  - Field references will only show the simple name of the field itself, but
+    either hovering over the field or giving it focus will show the fully-
+    qualified path of the field, as a tooltip for the former and within the
+    field itself for the latter. Field references start with the source model
+    name, followed by a colon, then the path to the field. 
+
+  - Fields in field paths that are collections are indicated by square brackets
+    following their names ('[', ']') and an asterisk ('*') to indicate the
+    mapping applies to all elements within the collection, or an index or range
+    to indicate a particular element or elements apply.
+
+  - Most parameters are followed by an 'Add transformation' icon (the lightning
+    bolt decorated with a plus sign ('+')). This is a powerful feature that
+    allows the user to add a new transformation to the overall mapping,
+    automatically referencing the new transformation within the associated
+    parameter, and setting the parameter's value as the value of the first
+    applicable parameter in the new transformation. This will be demonstrated in
+    the next step.
+
+  - Every transformation ends with a preview field, which presumes example data
+    will always be available for each source field via auto-data generation, a
+    user-specified sample file, or something of the sort.
+
+2)  Click the 'author' field in the target model.
+
+  Notice what occurs automatically:
+
+  - The target field is highlighted as selected.
+  - The Target parameter label color is changed to black.
+  - The Target parameter type is set to a field reference.
+  - The Target parameter field is set to 'author'.
+  
+  This transformation now represents the simplest type of mapping, from a source
+  field to a target field. The representation is simple and straight-forward.
+
+3)  Click the 'Add transformation' icon next to the Source parameter field.
+
+  Notice what occurs automatically:
+
+  - A new transformation is added to the mapping above the Map transformation.
+  - The Source parameter type is set to a transformation reference.
+  - The transformation dropdown in the new transformation is given focus.
+  - Since the new transformation's dropdown has focus, the Map transformation is
+    highlighted to indicate it is dependent upon the new transformation.
+
+  You'll also notice the following:
+
+  - Transformations are shown in simple boxes, organized in a workflow that
+    generally moves from top to bottom within the mapping, with dependency
+    transformations appearing above all dependent transformations. This ordering
+    of transformations would occur automatically, without any interaction by the
+    user.
+
+  - The Map transformation's Source parameter now references the new
+    transformation. If you hover over the Map transformation's Source parameter
+    field, the referenced new transformation will be highlighted.
+
+  Note, it would be useful to have a global toolbar toggle button that
+  automatically hides all transformations that are not direct dependents or
+  dependencies of the transformation that has focus.
+ 
+4)  Next, I'll select the Lowercase transformation from the dropdown in the new
+    transformation box.
+
+  Notice what occurs automatically:
+
+  - The parameters for the Lowercase transformation, along with the
+    transformation's preview field, are made visible.
+  - The Lowercase transformation's Source parameter is set to reference the
+    'author' field that was previously referenced by the Map transformation's
+    Source parameter.
+  - The Map transformation's Source parameter field now shows the reference to
+    the Lowercase transformation.
+  - Both the Lowercase and Map transformations' preview fields are updated to
+    reflect that the sample data should now be lowercase.
+  - The Source parameter's parameter type dropdown is given focus.
+
+  You'll also notice the following:
+
+  - Similar to field references, hovering over or giving focus to the Map
+    transformation's Source parameter field will show the fully expanded
+    transformation call values, using parameter names to qualify each value.
+
+  - When you hover over a Map transformation Target parameter, the connectors
+    from the source to the target are highlighted.
+
+5)  Once again, click the 'Add transformation' icon next to the Map
+    transformation's Source parameter field.
+
+  Notice what occurs automatically:
+
+  - A new transformation is added to the mapping above the Map transformation,
+    with the same results as adding a transformation before.
+
+6)  Select the MapIf transformation from the dropdown in the new transformation
+    box.
+
+  Notice what occurs automatically:
+
+  - The MapIf transformation is special in that it is dependent upon mappings,
+    and is thus moved after the Map transformation that it is now dependent
+    upon.
+  - The parameters for the MapIf transformation are made visible.
+  - The MapIf transformation's Then parameter is set to reference the
+    Map transformation.
+
+  You'll also notice the following:
+
+  - The MapIf transformation has no preview field as it offers no value for
+    this type of transformation.
+
+7)  Select the property option ('$') from the Condition dropdown.
+
+  Notice what occurs automatically:
+
+  - The Condition input field is given focus.
+  - A content assist popup appears below the field containing all properties
+    that match the field's contents (all of them in this case since the field
+    is currently empty).
+
+8)  Click the 'someBooleanProp' entry in the content assist popup.
+
+  Notice what occurs automatically:
+
+  - The Condition input field is populated with the selected entry.
+
+  You'll also notice the following:
+
+  - Hovering over the Condition input field highlights the referenced property
+    in the Sources view.
+
+9)  Finally, we'll 'cheat' a bit and click on the Mappings heading to show the
+    final mapping.
+
+Final Mapping Description
+-------------------------
+
+You'll notice the following:
+
+- The first transformation in the final mapping, Combine, has a repeatable first
+  parameter. It requires two instances, but the user may add more using the
+  'Add <ParameterName> parameter' link below the group. The optional parameter
+  instances appear with remove icons behind them. 
+
+- The Split transformation demonstrates, via its preview field, that it results
+  in an array rather than splitting results directly into target fields. This
+  allows further transformations to be applied to individual items in the array,
+  which is demonstrated by the subsequent Crop transformation.
+
+- The Split transformation has also been given a name by the user, and
+  subsequent references to this transformation use this name rather than the
+  default transformation name. This would be especially useful if multiple
+  instances of a transformation, like Split, are present in the mapping and one
+  or more are referenced by one or more other transformations.
