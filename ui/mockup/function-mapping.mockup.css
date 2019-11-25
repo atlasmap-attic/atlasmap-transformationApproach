@@ -1,0 +1,266 @@
+
+.addParameter {
+  text-align: center;
+  text-decoration: underline;
+  color: blue;
+}
+
+.alignRight {
+  float: right;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+#connectors {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: top;
+  overflow: hidden;
+  flex: 1;
+}
+
+.dependency {
+  background: dodgerblue !important;
+}
+
+.dependent {
+  background: rgba(30, 144, 255, .25) !important;
+}
+
+.editableHeader {
+  display: flex;
+  background: rgb(128, 128, 128);
+  padding: 10px;
+  margin: 0px;
+}
+
+.editableHeader * {
+  padding: 5px;
+  text-align: center;
+}
+
+expander {
+  flex-grow: 1;
+}
+
+.fa-adjust {
+  color: blue;
+  visibility: hidden;
+  align-self: center;
+}
+
+.fa-edit {
+  align-self: center;
+  padding-left: 5px;
+}
+
+.fa-layers {
+  align-self: center;
+}
+
+.fa-times {
+  align-self: center;
+}
+
+.fa-file-import {
+  align-self: center;
+}
+
+.field {
+  display: flex;
+}
+
+.field * {
+  padding: 5px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.fieldSelected {
+  background: silver;
+  color: white;
+}
+
+.function {
+  border: solid 1px;
+  padding: 10px;
+}
+
+hBox {
+  display: flex;
+}
+
+hBox * {
+  align-self: center;
+  padding-right: 5px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+img {
+  height: 16px;
+}
+
+.line {
+  stroke:silver;
+  stroke-width: 3;
+  visibility: hidden;
+}
+
+.mapping {
+  display: flex;
+  flex-direction: column;
+}
+
+.mappings {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px;
+  margin-left: 10px;
+  flex: 3;
+}
+
+.mappingsHeader {
+  padding: 10px;
+  margin: 0px;
+}
+
+.missing {
+  display: none;
+}
+
+.parameterType {
+  background: none;
+}
+
+.parameterType::before {
+  display: none;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 100;
+  content: "\f0e7"
+}
+
+.preview {
+  float: right;
+}
+
+.previewColumn {
+  width: 99%;
+}
+
+.previewLabel {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.scrollable {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroller {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.scrollerContainer {
+  height: 95vh;
+}
+
+.selectFunction {
+  font-size: larger;
+}
+
+.sources {
+  border: solid 1px;
+  flex: 2;
+}
+
+#svg {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+table {
+  visibility: block;
+}
+
+.targets {
+  border: solid 1px;
+  flex: 2;
+}
+
+td {
+  padding-top: 5px;
+}
+
+.tippy-tooltip.contentAssist-theme {
+  background: white;
+  color: black;
+  border: solid 1px;
+}
+
+.toolBar {
+  display: flex;
+}
+
+.toolBar * {
+  padding: 5px 0px 5px 5px;
+}
+
+.tooltipTarget {
+  position: relative;
+  visibility: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltipTarget .tooltip {
+  visibility: hidden;
+  width: 300px;
+  background-color: palegoldenrod;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+  opacity: 0;
+  transition: opacity 1s;
+  transition-delay: .5s;
+}
+
+.tooltipTarget:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.treeHeader {
+  display: flex;
+  padding: 10px;
+  margin: 0px;
+}
+
+.views {
+  display: flex;
+}
+
+.xformIcon {
+  color: blue;
+  visibility: hidden;
+  align-self: center;
+}

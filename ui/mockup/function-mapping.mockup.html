@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="icon" href="favicon.ico" />
+      <link rel="stylesheet" type="text/css" href="function-mapping.mockup.css">  </head>
+      <script src="https://kit.fontawesome.com/25f1e309eb.js" crossorigin="anonymous" data-search-pseudo-elements></script>
+  <body class="apps">
+    <div class="toolBar"> 
+      <expander></expander>
+      <span class="fa-layers fa-fw">
+        <i class="fas fa-bolt"></i>
+        <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+      </span>
+      <i class="fas fa-cog fa-lg"></i>
+    </div> <!-- toolBar -->
+    <div class="views scrollerContainer">
+      <div class="sources scroller">
+        <h1 id="sourcesHeader" class="treeHeader">
+          Sources
+          <expander></expander>
+          <i id="sourcesRemoveIcon" class="fas fa-upload"></i>
+        </h1>
+        <h2 id="booksSourceHeader" class="editableHeader">
+          <i class="fas fa-angle-down"></i>
+          <spane>Books</spane>
+          <i id="booksSourceEditIcon" class="fas fa-edit"></i>
+          <expander></expander>
+          <i id="booksSourceRemoveIcon" class="fas fa-times"></i>
+        </h2>
+        <div class="scrollable">
+          <div class="field">
+            <i class="fas fa-angle-down"></i>
+            <i class="far fa-folder"></i>
+            <span>bookstore</span>
+            <expander></expander>
+            <i id="bookstoreSourceMapIcon" class="fas fa-adjust fa-xs fa-flip-horizontal"></i>
+          </div>
+          <div class="field">
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down"></i>
+            <i class="far fa-folder"></i>
+            <span>book[]</span>
+            <expander></expander>
+            <i id="bookSourceMapIcon" class="fas fa-adjust fa-xs fa-flip-horizontal"></i>
+          </div>
+          <div id="authorSource" class="field">
+            <i class="fas fa-angle-down hidden "></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <span>/</span>
+            <span>author</span>
+            <expander></expander>
+            <i id="authorSourceMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          </div>
+          <div id="firstNameSource" class="field">
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <span>/</span>
+            <span>firstName</span>
+            <expander></expander>
+            <i id="firstNameSourceMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          </div>
+          <div class="field">
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <span>@</span>
+            <span>lang</span>
+          </div>
+          <div id="lastNameSource" class="field">
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <span class="center">/</span>
+            <span>lastName</span>
+            <expander></expander>
+            <i id="lastNameSourceMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          </div>
+          <div id="middleInitialSource" class="field">
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <i class="fas fa-angle-down hidden"></i>
+            <span>/</span>
+            <span>middleInitial</span>
+            <expander></expander>
+            <i id="middleInitialSourceMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          </div>
+        </div>
+        <expander></expander>
+        <h2 id="propsHeader" class="editableHeader">
+          <i class="fas fa-angle-down"></i>
+          <span>Properties</span>
+          <i class="fas fa-angle-down hidden"></i>
+          <expander></expander>
+          <i id="propsAddIcon" class="fas fa-plus"></i>
+        </h2>
+        <div class="scrollable">
+          <div id="someBooleanProp" class="field">
+            <i class="fas fa-dollar-sign"></i>
+            <span>someBooleanProp = true</span>
+            <expander></expander>
+            <i class="fas fa-edit fa-xs"></i>
+            <i class="fas fa-times fa-xs"></i>
+          </div>
+        </div>
+      </div>
+      <div id="connectors">
+          <svg id="svg" width="0" xmlns="http://www.w3.org/2000/svg">
+            <line id="authorToAuthor" class="line" x1="0" y1="186" y2="186" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="firstNameToAuthor" class="line" x1="0" y1="214" y2="186" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="lastNameToAuthor" class="line" x1="0" y1="270" y2="186" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="middleInitialToAuthor" class="line" x1="0" y1="298" y2="186" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="firstNameToFirstName" class="line" x1="0" y1="214" y2="214" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="lastNameToFirstName" class="line" x1="0" y1="270" y2="214" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="middleInitialToFirstName" class="line" x1="0" y1="298" y2="214" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="firstNameToLastName" class="line" x1="0" y1="214" y2="270" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="lastNameToLastName" class="line" x1="0" y1="270" y2="270" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="middleInitialToLastName" class="line" x1="0" y1="298" y2="270" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="firstNameToMiddleInitial" class="line" x1="0" y1="214" y2="298" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="lastNameToMiddleInitial" class="line" x1="0" y1="270" y2="298" xmlns="http://www.w3.org/2000/svg"/>
+            <line id="middleInitialToMiddleInitial" class="line" x1="0" y1="298" y2="298" xmlns="http://www.w3.org/2000/svg"/>
+          </svg>
+        </div>
+      <div class="targets scroller">
+        <h1 id="targetsHeader" class="treeHeader">
+          Targets
+          <expander></expander>
+          <i id="targetsRemoveIcon" class="fas fa-upload"></i>
+        </h1>
+        <h2 id="booksTargetHeader" class="editableHeader">
+          <i class="fas fa-angle-down"></i>
+          <spane>Books</spane>
+          <i id="booksTargetEditIcon" class="fas fa-edit"></i>
+          <expander></expander>
+          <i id="booksTargetRemoveIcon" class="fas fa-times"></i>
+        </h2>
+        <div class="field">
+          <i id="bookstoreTargetMapIcon" class="fas fa-adjust fa-xs fa-flip-horizontal"></i>
+          <i class="fas fa-angle-down"></i>
+          <i class="far fa-folder"></i>
+          <span>bookstore</span>
+          <span></span>
+        </div>
+        <div class="field">
+          <i id="bookTargetMapIcon" class="fas fa-adjust fa-xs fa-flip-horizontal"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down"></i>
+          <i class="far fa-folder"></i>
+          <span>book[]</span>
+        </div>
+        <div id="authorTarget" class="field">
+          <i id="authorTargetMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <span class="center">/</span>
+          <span>author</span>
+        </div>
+        <div id="firstNameTarget" class="field">
+          <i id="firstNameTargetMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <span class="center">/</span>
+          <span>firstName</span>
+        </div>
+        <div class="field">
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <span class="center">@</span>
+          <span>lang</span>
+        </div>
+        <div id="lastNameTarget" class="field">
+          <i id="lastNameTargetMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <span class="center">/</span>
+          <span>lastName</span>
+        </div>
+        <div id="middleInitialTarget" class="field">
+          <i id="middleInitialTargetMapIcon" class="xformIcon fas fa-bolt fa-xs"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <i class="fas fa-angle-down hidden"></i>
+          <span class="center">/</span>
+          <span>middleInitial</span>
+        </div>
+      </div>
+      <div class="mappings">
+        <h1 id="mappingsHeader" class="mappingsHeader">Mappings</h1>
+        <div id="mapping" class="scroller hidden">
+          <div class="scrollable">
+            <div id="combine" class="function missing">
+              <hBox>
+                <i class="fas fa-bolt"></i>
+                <select class="selectFunction">
+                  <option selected>Combine</option>
+                  <option>Crop</option>
+                  <option>If</option>
+                  <option>Lowercase</option>
+                  <option>Map</option>
+                  <option>MapIf</option>
+                  <option>Split</option>
+                </select>
+                <i id="combineEditIcon" class="fas fa-edit"></i>
+                <expander></expander>
+                <i id="combineRemoveIcon" class="fas fa-times"></i>
+              </hBox>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>&#xf0e7;</option>
+                      <option selected>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="combineSource1Input" type="text" value="lastName">
+                      <span class="tooltip">Books:bookstore/book[*]/lastName</span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="combineSource1AddFuncIcon" class="fa-layers fa-fw">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option selected>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" value=", ">
+                  </td>
+                  <td>
+                    <span id="combineSource2AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option selected>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="combineSource3Input" type="text" value="firstName">
+                      <span class="tooltip">Books:bookstore/book[*]/firstName</span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="combineSource3AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <i id="combineSource3RemoveIcon" class="fas fa-times"></i>
+                  <td>
+                </tr>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option selected>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" value=" ">
+                  </td>
+                  <td>
+                    <span id="combineSource4AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <i id="combineSource4RemoveIcon" class="fas fa-times"></i>
+                  <td>
+                </tr>
+                <tr>
+                  <td>Source 5:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option selected>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="combineSource5Input" type="text" value="middleInitial">
+                      <span class="tooltip">Books:bookstore/book[*]/middleInitial</span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="combineSource5AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <i id="combineSource5RemoveIcon" class="fas fa-times"></i>
+                  <td>
+                </tr>
+                <tr>
+                  <td id="combineAddSourceLink" class="addParameter" colspan="5">Add Source parameter</td>
+                </tr>
+                <tr>
+                  <td>Delimiter:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option selected>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" value="">
+                  </td>
+                  <td>
+                    <span id="combineDelimiterAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input class="preview" type="text" readonly value="'Doe, John H.'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- combine function -->
+            <div id="lowercase" class="function missing">
+              <i class="fas fa-bolt"></i>
+              <select id="lowercaseFuncDropdown" class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option>Crop</option>
+                <option>If</option>
+                <option selected>Lowercase</option>
+                <option>Map</option>
+                <option>MapIf</option>
+                <option>Split</option>
+              </select>
+              <i id="lowercaseEditIcon" class="fas fa-edit"></i>
+              <i id="lowercaseRemoveIcon" class="fas fa-times alignRight"></i>
+              <table id="lowercaseTable" class="missing">
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select id="lowercaseSourceDropdown" class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="lowercaseSourceInput" type="text" value="Combine(...)">
+                      <span id="lowercaseSourceToolTip" class="tooltip">
+                        Combine(
+                          Source 1: 'Books:bookstore/book[*]/lastName', 
+                          Source 2: ', ', 
+                          Source 3: 'Books:bookstore/book[*]/firstName', 
+                          Source 4: ' ', 
+                          Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                          Delimiter: ''
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="lowercaseSourceAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input id="lowercasePreview" class="preview" type="text" readonly value="'doe, john h.'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- lowercase function -->
+            <div id="map1" class="function">
+              <i class="fas fa-bolt"></i>
+              <select class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option>Crop</option>
+                <option>If</option>
+                <option>Lowercase</option>
+                <option selected>Map</option>
+                <option>MapIf</option>
+                <option>Split</option>
+              </select>
+              <i id="map1EditIcon" class="fas fa-edit"></i>
+              <i id="map1RemoveIcon" class="fas fa-times alignRight"></i>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select id="map1SourceDropdown" class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map1SourceInput" type="text" value="Lowercase(...)">
+                      <span id="map1SourceToolTip" class="tooltip">
+                        Lowercase(
+                          Source: Combine(
+                            Source 1: 'Books:bookstore/book[*]/lastName', 
+                            Source 2: ', ', 
+                            Source 3: 'Books:bookstore/book[*]/firstName', 
+                            Source 4: ' ', 
+                            Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                            Delimiter: ''
+                          )
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="map1SourceAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="map1TargetLabel">Target:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>/</option>
+                      <option>$</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map1TargetInput" type="text" value="author">
+                      <span id="map1TargetToolTip" class="tooltip">Books:bookstore/book[*]/author</span>
+                    </input>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input id="map1Preview" class="preview" type="text" readonly value="'doe, john h.'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- map1 function -->
+            <div id="split" class="function missing">
+              <i class="fas fa-bolt"></i>
+              <select class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option>Crop</option>
+                <option>If</option>
+                <option>Lowercase</option>
+                <option>Map</option>
+                <option>MapIf</option>
+              <option selected>Split</option>
+              </select>
+              Split Full Name
+              <i id="splitEditIcon" class="fas fa-edit"></i>
+              <i id="splitRemoveIcon" class="fas fa-times alignRight"></i>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="splitSourceInput" type="text" value="Lowercase(...)">
+                      <span class="tooltip">
+                        Lowercase(
+                          Source: Combine(
+                            Source 1: 'Books:bookstore/book[*]/lastName', 
+                            Source 2: ', ', 
+                            Source 3: 'Books:bookstore/book[*]/firstName', 
+                            Source 4: ' ', 
+                            Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                            Delimiter: ''
+                          )
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="splitSourceAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Delimiter:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option selected>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" value=" ">
+                  </td>
+                  <td>
+                    <span id="splitDelimiterAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input class="preview" type="text" readonly value="['doe,', 'john', 'h.']">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- split function -->
+            <div id="crop" class="function missing">
+              <i class="fas fa-bolt"></i>
+              <select class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option selected>Crop</option>
+                <option>If</option>
+                <option>Lowercase</option>
+                <option>Map</option>
+                <option>MapIf</option>
+              <option>Split</option>
+              </select>
+              <i id="cropEditIcon" class="fas fa-edit"></i>
+              <i id="cropRemoveIcon" class="fas fa-times alignRight"></i>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="cropSourceInput" type="text" value="Split Full Name[1]">
+                      <span class="tooltip">
+                        Split(
+                          Source: Lowercase(
+                            Source: Combine(
+                              Source 1: 'Books:bookstore/book[*]/lastName', 
+                              Source 2: ', ', 
+                              Source 3: 'Books:bookstore/book[*]/firstName', 
+                              Source 4: ' ', 
+                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                              Delimiter: ''
+                            )
+                          ),
+                          Delimiter: ' '
+                        )[1]
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="cropSourceAddFuncIcon" class="fa-layers fa-fw">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td> Index:</td>
+                  <td>
+                    <input type="text" value="1">
+                  </td>
+                </tr>
+                <tr>
+                  <td>From:</td>
+                  <td colspan="2">
+                    <select class="parameterType">
+                      <option>Start</option>
+                      <option selected>End</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Characters:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option selected>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" value="1">
+                  </td>
+                  <td>
+                    <span id="cropCharactersAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input class="preview" type="text" readonly value="'doe'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- crop function -->
+            <div id="map2" class="function missing">
+              <i class="fas fa-bolt"></i>
+              <select class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option>Crop</option>
+                <option>If</option>
+                <option>Lowercase</option>
+                <option selected>Map</option>
+                <option>MapIf</option>
+                <option>Split</option>
+              </select>
+              <i id="map2EditIcon" class="fas fa-edit"></i>
+              <i id="map2RemoveIcon" class="fas fa-times alignRight"></i>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map2SourceInput" type="text" value="Crop(...)">
+                      <span class="tooltip">
+                        Crop(
+                          Source: Split(
+                            Source: Lowercase(
+                              Source: Combine(
+                                Source 1: 'Books:bookstore/book[*]/lastName', 
+                                Source 2: ', ', 
+                                Source 3: 'Books:bookstore/book[*]/firstName', 
+                                Source 4: ' ', 
+                                Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                                Delimiter: ''
+                              ),
+                              Delimiter: ' '
+                            )
+                          )[1],
+                          From: End,
+                          Characters: 1
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="map2SourceAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Target:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>/</option>
+                      <option>$</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map2TargetInput" type="text" value="lastName">
+                      <span class="tooltip">Books:bookstore/book[*]/lastName</span>
+                    </input>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input class="preview" type="text" readonly value="'doe'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- map2 function -->
+            <div id="map3" class="function missing">
+              <i class="fas fa-bolt"></i>
+              <select class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option>Crop</option>
+                <option>If</option>
+                <option>Lowercase</option>
+                <option selected>Map</option>
+                <option>MapIf</option>
+                <option>Split</option>
+              </select>
+              <i id="map3EditIcon" class="fas fa-edit"></i>
+              <i id="map3RemoveIcon" class="fas fa-times alignRight"></i>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map3SourceInput" type="text" value="Split Full Name[2]">
+                      <span class="tooltip">
+                        Split(
+                          Source: Lowercase(
+                            Source: Combine(
+                              Source 1: 'Books:bookstore/book[*]/lastName', 
+                              Source 2: ', ', 
+                              Source 3: 'Books:bookstore/book[*]/firstName', 
+                              Source 4: ' ', 
+                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                              Delimiter: ''
+                            )
+                          ),
+                          Delimiter: ' '
+                        )[2]
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="map3SourceAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td> Index:</td>
+                  <td>
+                    <input type="text" value="2">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Target:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>/</option>
+                      <option>$</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map3TargetInput" type="text" value="firstName">
+                      <span class="tooltip">Books:bookstore/book[*]/firstName</span>
+                    </input>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input class="preview" type="text" readonly value="'john'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- map3 function -->
+            <div id="map4" class="function missing">
+              <i class="fas fa-bolt"></i>
+              <select class="selectFunction">
+                <option></option>
+                <option>Combine</option>
+                <option>Crop</option>
+                <option>If</option>
+                <option>Lowercase</option>
+                <option selected>Map</option>
+                <option>MapIf</option>
+                <option>Split</option>
+              </select>
+              <i id="map4EditIcon" class="fas fa-edit"></i>
+              <i id="map4RemoveIcon" class="fas fa-times alignRight"></i>
+              <table>
+                <tr>
+                  <td>Source:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map4SourceInput" type="text" value="Split Full Name[4]">
+                      <span class="tooltip">
+                        Split(
+                          Source: Lowercase(
+                            Source: Combine(
+                              Source 1: 'Books:bookstore/book[*]/lastName', 
+                              Source 2: ', ', 
+                              Source 3: 'Books:bookstore/book[*]/firstName', 
+                              Source 4: ' ', 
+                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                              Delimiter: ''
+                            )
+                          ),
+                          Delimiter: ' '
+                        )[3]
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="map4SourceAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td> Index:</td>
+                  <td>
+                    <input type="text" value="3">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Target:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>/</option>
+                      <option>$</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="map4TargetInput" type="text" value="middleInitial">
+                      <span class="tooltip">Books:bookstore/book[*]/middleInitial</span>
+                    </input>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="previewLabel" colspan="5">Preview:</td>
+                  <td class="previewColumn">
+                    <input class="preview" type="text" readonly value="'h.'">
+                  </td>
+                </tr>
+              </table>
+            </div> <!-- map4 function -->
+            <div id="mapIf" class="function missing">
+              <hBox>
+                <i class="fas fa-bolt"></i>
+                <select id="mapIfFuncDropdown" class="selectFunction">
+                  <option>Combine</option>
+                  <option>Crop</option>
+                  <option>If</option>
+                  <option>Lowercase</option>
+                  <option>Map</option>
+                  <option selected>MapIf</option>
+                  <option>Split</option>
+                </select>
+                <i id="mapIfEditIcon" class="fas fa-edit"></i>
+                <expander></expander>
+                <i id="mapIfRemoveIcon" class="fas fa-times"></i>
+              </hBox>
+              <table id="mapIfTable" class="missing">
+                <tr>
+                  <td>Condition:</td>
+                  <td>
+                    <select id="mapIfConditionDropdown" class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option selected>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="mapIfConditionInput" type="text" value="someBooleanProp">
+                      <span id="mapIfConditionTooltip" class="tooltip">
+                        true
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="mapIfConditionAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Then:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="mapIfThenInput" type="text" value="Map(...)">
+                      <span class="tooltip">
+                        Map(
+                          Source: Lowercase(
+                            Source: Combine(
+                              Source 1: 'Books:bookstore/book[*]/lastName', 
+                              Source 2: ', ', 
+                              Source 3: 'Books:bookstore/book[*]/firstName',
+                              Source 4: ' ', 
+                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                              Delimiter: ''
+                            ),
+                          ),
+                          Target: 'Books:bookstore/book[*]/author'
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="mapIfThenAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="mapIfAddThenLink" class="addParameter" colspan="5">Add Then parameter</td>
+                </tr>
+                <tr id="mapIfElse1" class="missing">
+                  <td>Else:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="mapIfElse1Input" type="text" value="Map(...)">
+                      <span class="tooltip">
+                        Map(
+                          Source: Crop(
+                            Source: Split(
+                              Source: Lowercase(
+                                Source: Combine(
+                                  Source 1: 'Books:bookstore/book[*]/lastName', 
+                                  Source 2: ', ', 
+                                  Source 3: 'Books:bookstore/book[*]/firstName',
+                                  Source 4: ' ', 
+                                  Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                                  Delimiter: ''
+                                ),
+                                Delimiter: ' '
+                              )
+                            )[1],
+                            From: End,
+                            Characters: 1
+                          ),
+                          Target: 'Books:bookstore/book[*]/lastName'
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="mapIfElse1AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <i id="mapIfElse1RemoveIcon" class="fas fa-times"></i>
+                  <td>
+                </tr>
+                <tr id="mapIfElse2" class="missing">
+                  <td>Else:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="mapIfElse2Input" type="text" value="Map(...)">
+                      <span class="tooltip">
+                        Map(
+                          Source: Crop(
+                            Source: Split(
+                              Source: Lowercase(
+                                Source: Combine(
+                                  Source 1: 'Books:bookstore/book[*]/lastName', 
+                                  Source 2: ', ', 
+                                  Source 3: 'Books:bookstore/book[*]/firstName',
+                                  Source 4: ' ', 
+                                  Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                                  Delimiter: ''
+                                ),
+                                Delimiter: ' '
+                              )
+                            )[2],
+                            From: End,
+                            Characters: 1
+                          ),
+                          Target: 'Books:bookstore/book[*]/firstName'
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="mapIfElse2AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <i id="mapIfElse2RemoveIcon" class="fas fa-times"></i>
+                  <td>
+                </tr>
+                <tr id="mapIfElse3" class="missing">
+                  <td>Else:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td class="tooltipTarget">
+                    <input id="mapIfElse3Input" type="text" value="Map(...)">
+                      <span class="tooltip">
+                        Map(
+                          Source: Crop(
+                            Source: Split(
+                              Source: Lowercase(
+                                Source: Combine(
+                                  Source 1: 'Books:bookstore/book[*]/lastName', 
+                                  Source 2: ', ', 
+                                  Source 3: 'Books:bookstore/book[*]/firstName',
+                                  Source 4: ' ', 
+                                  Source 5: 'Books:bookstore/book[*]/middleInitial', 
+                                  Delimiter: ''
+                                ),
+                                Delimiter: ' '
+                              )
+                            )[3],
+                            From: End,
+                            Characters: 1
+                          ),
+                          Target: 'Books:bookstore/book[*]/firstName'
+                        )
+                      </span>
+                    </input>
+                  </td>
+                  <td>
+                    <span id="mapIfElse3AddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <i id="mapIfElse3RemoveIcon" class="fas fa-times"></i>
+                  <td>
+                </tr>
+                <tr>
+                  <td id="mapIfAddElseLink" class="addParameter" colspan="5">Add Else parameter</td>
+                </tr>
+              </table>
+            </div> <!-- mapIf function -->
+          </div> <!-- functions -->
+        </div> <!-- mapping -->
+      </div> <!-- mappings -->
+    </div> <!-- views -->
+    <script src="https://unpkg.com/popper.js@1"></script>
+    <script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
+    <script src="function-mapping.mockup.js"></script>
+  </body>
+</html>
