@@ -5,12 +5,13 @@
       <link rel="stylesheet" type="text/css" href="function-mapping.mockup.css">  </head>
       <script src="https://kit.fontawesome.com/25f1e309eb.js" crossorigin="anonymous" data-search-pseudo-elements></script>
   <body class="apps">
-    <div class="toolBar"> 
+    <div class="toolBar">
       <expander></expander>
       <span class="fa-layers fa-fw">
         <i class="fas fa-bolt"></i>
         <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
       </span>
+      <i class="fas fa-eye"></i>
       <i class="fas fa-cog fa-lg"></i>
     </div> <!-- toolBar -->
     <div class="views scrollerContainer">
@@ -221,10 +222,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="combineSource1Input" type="text" value="lastName">
-                      <span class="tooltip">Books:bookstore/book[*]/lastName</span>
-                    </input>
+                  <td>
+                    <input id="combineSource1Input" type="text" value="lastName"></input>
                   </td>
                   <td>
                     <span id="combineSource1AddFuncIcon" class="fa-layers fa-fw">
@@ -263,10 +262,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="combineSource3Input" type="text" value="firstName">
-                      <span class="tooltip">Books:bookstore/book[*]/firstName</span>
-                    </input>
+                  <td>
+                    <input id="combineSource3Input" type="text" value="firstName"></input>
                   </td>
                   <td>
                     <span id="combineSource3AddFuncIcon" class="fa-layers">
@@ -302,7 +299,7 @@
                   <td>
                 </tr>
                 <tr>
-                  <td>Source 5:</td>
+                  <td>Source:</td>
                   <td>
                     <select class="parameterType">
                       <option>f</option>
@@ -311,10 +308,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="combineSource5Input" type="text" value="middleInitial">
-                      <span class="tooltip">Books:bookstore/book[*]/middleInitial</span>
-                    </input>
+                  <td>
+                    <input id="combineSource5Input" type="text" value="middleInitial"></input>
                   </td>
                   <td>
                     <span id="combineSource5AddFuncIcon" class="fa-layers">
@@ -382,19 +377,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="lowercaseSourceInput" type="text" value="Combine(...)">
-                      <span id="lowercaseSourceToolTip" class="tooltip">
-                        Combine(
-                          Source 1: 'Books:bookstore/book[*]/lastName', 
-                          Source 2: ', ', 
-                          Source 3: 'Books:bookstore/book[*]/firstName', 
-                          Source 4: ' ', 
-                          Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                          Delimiter: ''
-                        )
-                      </span>
-                    </input>
+                  <td>
+                    <input id="lowercaseSourceInput" type="text" value="Combine(...)"></input>
                   </td>
                   <td>
                     <span id="lowercaseSourceAddFuncIcon" class="fa-layers">
@@ -436,21 +420,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map1SourceInput" type="text" value="Lowercase(...)">
-                      <span id="map1SourceToolTip" class="tooltip">
-                        Lowercase(
-                          Source: Combine(
-                            Source 1: 'Books:bookstore/book[*]/lastName', 
-                            Source 2: ', ', 
-                            Source 3: 'Books:bookstore/book[*]/firstName', 
-                            Source 4: ' ', 
-                            Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                            Delimiter: ''
-                          )
-                        )
-                      </span>
-                    </input>
+                  <td>
+                    <input id="map1SourceInput" type="text" value="Lowercase(...)"></input>
                   </td>
                   <td>
                     <span id="map1SourceAddFuncIcon" class="fa-layers">
@@ -467,10 +438,8 @@
                       <option>$</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map1TargetInput" type="text" value="author">
-                      <span id="map1TargetToolTip" class="tooltip">Books:bookstore/book[*]/author</span>
-                    </input>
+                  <td>
+                    <input id="map1TargetInput" type="text" value="author"></input>
                   </td>
                 </tr>
                 <tr>
@@ -481,6 +450,68 @@
                 </tr>
               </table>
             </div> <!-- map1 function -->
+            <div id="mapIf" class="function missing">
+              <hBox>
+                <i class="fas fa-bolt"></i>
+                <select id="mapIfFuncDropdown" class="selectFunction">
+                  <option>Combine</option>
+                  <option>Crop</option>
+                  <option>If</option>
+                  <option>Lowercase</option>
+                  <option>Map</option>
+                  <option selected>MapIf</option>
+                  <option>Split</option>
+                </select>
+                <i id="mapIfEditIcon" class="fas fa-edit"></i>
+                <expander></expander>
+                <i id="mapIfRemoveIcon" class="fas fa-times"></i>
+              </hBox>
+              <table id="mapIfTable" class="missing">
+                <tr>
+                  <td>Condition:</td>
+                  <td>
+                    <select id="mapIfConditionDropdown" class="parameterType">
+                      <option>f</option>
+                      <option>/</option>
+                      <option selected>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input id="mapIfConditionInput" type="text" value="someBooleanProp"></input>
+                  </td>
+                  <td>
+                    <span id="mapIfConditionAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Then:</td>
+                  <td>
+                    <select class="parameterType">
+                      <option selected>f</option>
+                      <option>/</option>
+                      <option>$</option>
+                      <option>=</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input id="mapIfThenInput" type="text" value="Map(...)"></input>
+                  </td>
+                  <td>
+                    <span id="mapIfThenAddFuncIcon" class="fa-layers">
+                      <i class="fas fa-bolt"></i>
+                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="mapIfAddThenLink" class="addParameter" colspan="5">Add Then parameter</td>
+                </tr>
+              </table>
+            </div> <!-- mapIf function -->
             <div id="split" class="function missing">
               <i class="fas fa-bolt"></i>
               <select class="selectFunction">
@@ -507,21 +538,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="splitSourceInput" type="text" value="Lowercase(...)">
-                      <span class="tooltip">
-                        Lowercase(
-                          Source: Combine(
-                            Source 1: 'Books:bookstore/book[*]/lastName', 
-                            Source 2: ', ', 
-                            Source 3: 'Books:bookstore/book[*]/firstName', 
-                            Source 4: ' ', 
-                            Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                            Delimiter: ''
-                          )
-                        )
-                      </span>
-                    </input>
+                  <td>
+                    <input id="splitSourceInput" type="text" value="Lowercase(...)"></input>
                   </td>
                   <td>
                     <span id="splitSourceAddFuncIcon" class="fa-layers">
@@ -583,24 +601,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="cropSourceInput" type="text" value="Split Full Name[1]">
-                      <span class="tooltip">
-                        Split(
-                          Source: Lowercase(
-                            Source: Combine(
-                              Source 1: 'Books:bookstore/book[*]/lastName', 
-                              Source 2: ', ', 
-                              Source 3: 'Books:bookstore/book[*]/firstName', 
-                              Source 4: ' ', 
-                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                              Delimiter: ''
-                            )
-                          ),
-                          Delimiter: ' '
-                        )[1]
-                      </span>
-                    </input>
+                  <td>
+                    <input id="cropSourceInput" type="text" value="Split Full Name"></input>
                   </td>
                   <td>
                     <span id="cropSourceAddFuncIcon" class="fa-layers fa-fw">
@@ -675,28 +677,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map2SourceInput" type="text" value="Crop(...)">
-                      <span class="tooltip">
-                        Crop(
-                          Source: Split(
-                            Source: Lowercase(
-                              Source: Combine(
-                                Source 1: 'Books:bookstore/book[*]/lastName', 
-                                Source 2: ', ', 
-                                Source 3: 'Books:bookstore/book[*]/firstName', 
-                                Source 4: ' ', 
-                                Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                                Delimiter: ''
-                              ),
-                              Delimiter: ' '
-                            )
-                          )[1],
-                          From: End,
-                          Characters: 1
-                        )
-                      </span>
-                    </input>
+                  <td>
+                    <input id="map2SourceInput" type="text" value="Crop(...)"></input>
                   </td>
                   <td>
                     <span id="map2SourceAddFuncIcon" class="fa-layers">
@@ -713,10 +695,8 @@
                       <option>$</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map2TargetInput" type="text" value="lastName">
-                      <span class="tooltip">Books:bookstore/book[*]/lastName</span>
-                    </input>
+                  <td>
+                    <input id="map2TargetInput" type="text" value="lastName"></input>
                   </td>
                 </tr>
                 <tr>
@@ -752,24 +732,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map3SourceInput" type="text" value="Split Full Name[2]">
-                      <span class="tooltip">
-                        Split(
-                          Source: Lowercase(
-                            Source: Combine(
-                              Source 1: 'Books:bookstore/book[*]/lastName', 
-                              Source 2: ', ', 
-                              Source 3: 'Books:bookstore/book[*]/firstName', 
-                              Source 4: ' ', 
-                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                              Delimiter: ''
-                            )
-                          ),
-                          Delimiter: ' '
-                        )[2]
-                      </span>
-                    </input>
+                  <td>
+                    <input id="map3SourceInput" type="text" value="Split Full Name">
                   </td>
                   <td>
                     <span id="map3SourceAddFuncIcon" class="fa-layers">
@@ -790,10 +754,8 @@
                       <option>$</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map3TargetInput" type="text" value="firstName">
-                      <span class="tooltip">Books:bookstore/book[*]/firstName</span>
-                    </input>
+                  <td>
+                    <input id="map3TargetInput" type="text" value="firstName"></input>
                   </td>
                 </tr>
                 <tr>
@@ -829,24 +791,8 @@
                       <option>=</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map4SourceInput" type="text" value="Split Full Name[4]">
-                      <span class="tooltip">
-                        Split(
-                          Source: Lowercase(
-                            Source: Combine(
-                              Source 1: 'Books:bookstore/book[*]/lastName', 
-                              Source 2: ', ', 
-                              Source 3: 'Books:bookstore/book[*]/firstName', 
-                              Source 4: ' ', 
-                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                              Delimiter: ''
-                            )
-                          ),
-                          Delimiter: ' '
-                        )[3]
-                      </span>
-                    </input>
+                  <td>
+                    <input id="map4SourceInput" type="text" value="Split Full Name"></input>
                   </td>
                   <td>
                     <span id="map4SourceAddFuncIcon" class="fa-layers">
@@ -867,10 +813,8 @@
                       <option>$</option>
                     </select>
                   </td>
-                  <td class="tooltipTarget">
-                    <input id="map4TargetInput" type="text" value="middleInitial">
-                      <span class="tooltip">Books:bookstore/book[*]/middleInitial</span>
-                    </input>
+                  <td>
+                    <input id="map4TargetInput" type="text" value="middleInitial"></input>
                   </td>
                 </tr>
                 <tr>
@@ -881,229 +825,6 @@
                 </tr>
               </table>
             </div> <!-- map4 function -->
-            <div id="mapIf" class="function missing">
-              <hBox>
-                <i class="fas fa-bolt"></i>
-                <select id="mapIfFuncDropdown" class="selectFunction">
-                  <option>Combine</option>
-                  <option>Crop</option>
-                  <option>If</option>
-                  <option>Lowercase</option>
-                  <option>Map</option>
-                  <option selected>MapIf</option>
-                  <option>Split</option>
-                </select>
-                <i id="mapIfEditIcon" class="fas fa-edit"></i>
-                <expander></expander>
-                <i id="mapIfRemoveIcon" class="fas fa-times"></i>
-              </hBox>
-              <table id="mapIfTable" class="missing">
-                <tr>
-                  <td>Condition:</td>
-                  <td>
-                    <select id="mapIfConditionDropdown" class="parameterType">
-                      <option>f</option>
-                      <option>/</option>
-                      <option selected>$</option>
-                      <option>=</option>
-                    </select>
-                  </td>
-                  <td class="tooltipTarget">
-                    <input id="mapIfConditionInput" type="text" value="someBooleanProp">
-                      <span id="mapIfConditionTooltip" class="tooltip">
-                        true
-                      </span>
-                    </input>
-                  </td>
-                  <td>
-                    <span id="mapIfConditionAddFuncIcon" class="fa-layers">
-                      <i class="fas fa-bolt"></i>
-                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Then:</td>
-                  <td>
-                    <select class="parameterType">
-                      <option selected>f</option>
-                      <option>/</option>
-                      <option>$</option>
-                      <option>=</option>
-                    </select>
-                  </td>
-                  <td class="tooltipTarget">
-                    <input id="mapIfThenInput" type="text" value="Map(...)">
-                      <span class="tooltip">
-                        Map(
-                          Source: Lowercase(
-                            Source: Combine(
-                              Source 1: 'Books:bookstore/book[*]/lastName', 
-                              Source 2: ', ', 
-                              Source 3: 'Books:bookstore/book[*]/firstName',
-                              Source 4: ' ', 
-                              Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                              Delimiter: ''
-                            ),
-                          ),
-                          Target: 'Books:bookstore/book[*]/author'
-                        )
-                      </span>
-                    </input>
-                  </td>
-                  <td>
-                    <span id="mapIfThenAddFuncIcon" class="fa-layers">
-                      <i class="fas fa-bolt"></i>
-                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td id="mapIfAddThenLink" class="addParameter" colspan="5">Add Then parameter</td>
-                </tr>
-                <tr id="mapIfElse1" class="missing">
-                  <td>Else:</td>
-                  <td>
-                    <select class="parameterType">
-                      <option selected>f</option>
-                      <option>/</option>
-                      <option>$</option>
-                      <option>=</option>
-                    </select>
-                  </td>
-                  <td class="tooltipTarget">
-                    <input id="mapIfElse1Input" type="text" value="Map(...)">
-                      <span class="tooltip">
-                        Map(
-                          Source: Crop(
-                            Source: Split(
-                              Source: Lowercase(
-                                Source: Combine(
-                                  Source 1: 'Books:bookstore/book[*]/lastName', 
-                                  Source 2: ', ', 
-                                  Source 3: 'Books:bookstore/book[*]/firstName',
-                                  Source 4: ' ', 
-                                  Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                                  Delimiter: ''
-                                ),
-                                Delimiter: ' '
-                              )
-                            )[1],
-                            From: End,
-                            Characters: 1
-                          ),
-                          Target: 'Books:bookstore/book[*]/lastName'
-                        )
-                      </span>
-                    </input>
-                  </td>
-                  <td>
-                    <span id="mapIfElse1AddFuncIcon" class="fa-layers">
-                      <i class="fas fa-bolt"></i>
-                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
-                    </span>
-                  </td>
-                  <td>
-                    <i id="mapIfElse1RemoveIcon" class="fas fa-times"></i>
-                  <td>
-                </tr>
-                <tr id="mapIfElse2" class="missing">
-                  <td>Else:</td>
-                  <td>
-                    <select class="parameterType">
-                      <option selected>f</option>
-                      <option>/</option>
-                      <option>$</option>
-                      <option>=</option>
-                    </select>
-                  </td>
-                  <td class="tooltipTarget">
-                    <input id="mapIfElse2Input" type="text" value="Map(...)">
-                      <span class="tooltip">
-                        Map(
-                          Source: Crop(
-                            Source: Split(
-                              Source: Lowercase(
-                                Source: Combine(
-                                  Source 1: 'Books:bookstore/book[*]/lastName', 
-                                  Source 2: ', ', 
-                                  Source 3: 'Books:bookstore/book[*]/firstName',
-                                  Source 4: ' ', 
-                                  Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                                  Delimiter: ''
-                                ),
-                                Delimiter: ' '
-                              )
-                            )[2],
-                            From: End,
-                            Characters: 1
-                          ),
-                          Target: 'Books:bookstore/book[*]/firstName'
-                        )
-                      </span>
-                    </input>
-                  </td>
-                  <td>
-                    <span id="mapIfElse2AddFuncIcon" class="fa-layers">
-                      <i class="fas fa-bolt"></i>
-                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
-                    </span>
-                  </td>
-                  <td>
-                    <i id="mapIfElse2RemoveIcon" class="fas fa-times"></i>
-                  <td>
-                </tr>
-                <tr id="mapIfElse3" class="missing">
-                  <td>Else:</td>
-                  <td>
-                    <select class="parameterType">
-                      <option selected>f</option>
-                      <option>/</option>
-                      <option>$</option>
-                      <option>=</option>
-                    </select>
-                  </td>
-                  <td class="tooltipTarget">
-                    <input id="mapIfElse3Input" type="text" value="Map(...)">
-                      <span class="tooltip">
-                        Map(
-                          Source: Crop(
-                            Source: Split(
-                              Source: Lowercase(
-                                Source: Combine(
-                                  Source 1: 'Books:bookstore/book[*]/lastName', 
-                                  Source 2: ', ', 
-                                  Source 3: 'Books:bookstore/book[*]/firstName',
-                                  Source 4: ' ', 
-                                  Source 5: 'Books:bookstore/book[*]/middleInitial', 
-                                  Delimiter: ''
-                                ),
-                                Delimiter: ' '
-                              )
-                            )[3],
-                            From: End,
-                            Characters: 1
-                          ),
-                          Target: 'Books:bookstore/book[*]/firstName'
-                        )
-                      </span>
-                    </input>
-                  </td>
-                  <td>
-                    <span id="mapIfElse3AddFuncIcon" class="fa-layers">
-                      <i class="fas fa-bolt"></i>
-                      <i class="fas fa-plus" data-fa-transform="shrink-6 up-6 right-8"></i>
-                    </span>
-                  </td>
-                  <td>
-                    <i id="mapIfElse3RemoveIcon" class="fas fa-times"></i>
-                  <td>
-                </tr>
-                <tr>
-                  <td id="mapIfAddElseLink" class="addParameter" colspan="5">Add Else parameter</td>
-                </tr>
-              </table>
-            </div> <!-- mapIf function -->
           </div> <!-- functions -->
         </div> <!-- mapping -->
       </div> <!-- mappings -->

@@ -6,11 +6,11 @@ underlying structure looks very similar to the LISP language, or more commonly
 known, formulas seen in various popular spreadsheets. The really cool thing is
 it offers us a way to build all of the same types of functionality we currently
 have via field actions, but in a much simpler manner and with even more
-flexibility. 
+flexibility.
 
 Using this library as its core, I believe I have an approach for the user's
-experience to AtlasMap, i.e., its UI, that is simpler, less confusing, and more 
-intuitive than our current approach, and, most importantly, maintains our 
+experience to AtlasMap, i.e., its UI, that is simpler, less confusing, and more
+intuitive than our current approach, and, most importantly, maintains our
 initial goal of targeting the citizen user for our product.
 
 I am starting with this premise in mind: Almost any mapping tool can deal with
@@ -25,7 +25,7 @@ Motivation
 I believe our current design suffers from several design flaws:
 
 - Mappings require the user to choose all the source and target fields involved
-  in the mapping up front, which prevents the ability to use fields from 
+  in the mapping up front, which prevents the ability to use fields from
   sources that can be involved in a mapping, but are not themselves mapped to
   the target of that mapping. Consider, for example, the desire to use fields in
   the conditional part of decision logic only, and not necessarily mappings.
@@ -34,7 +34,7 @@ I believe our current design suffers from several design flaws:
   means any transformations that might require a result that doesn't match the
   target's data type is problematic.
 
-- Because the focus is on sources and targets, rather then the flow of 
+- Because the focus is on sources and targets, rather then the flow of
   transformations between them, decision logic related to which targets should
   be involved is difficult to both implement and remain easy to understand by
   the user.
@@ -125,7 +125,7 @@ Mapping Walk-through
 
   - The mapping itself will show an edit button that allows the user to name the
     mapping something other than the default 'Mapping'.
-    
+
   - To the far right, a remove appears allowing the user to delete the entire
     mapping.
 
@@ -149,12 +149,12 @@ Mapping Walk-through
     property ('$'), or transformation ('f'). This implies that transformations
     can involve any field, property, value, or other available transformation.
     Note, the particular symbols I used are somewhat arbitrary.
-    
+
   - The Map Target parameter types only allow for a field or property reference,
     as mapping to a value or transformation doesn't make sense.
 
   - Each parameter type dropdown is followed by a parameter value input box.
-    These boxes all support both content-assisted text entry, along with 
+    These boxes all support both content-assisted text entry, along with
     drag-&-drop from an appropriate source (e.g. fields from models, other
     transformations in mappings, properties, etc.).
 
@@ -162,7 +162,7 @@ Mapping Walk-through
     either hovering over the field or giving it focus will show the fully-
     qualified path of the field, as a tooltip for the former and within the
     field itself for the latter. Field references start with the source model
-    name, followed by a colon, then the path to the field. 
+    name, followed by a colon, then the path to the field.
 
   - Fields in field paths that are collections are indicated by square brackets
     following their names ('[', ']') and an asterisk ('*') to indicate the
@@ -179,7 +179,11 @@ Mapping Walk-through
 
   - Every transformation ends with a preview field, which presumes example data
     will always be available for each source field via auto-data generation, a
-    user-specified sample file, or something of the sort.
+    user-specified sample file, or something of the sort. (Note, I haven't show
+    this in the model trees)
+
+  - The appearance of the preview rows in the transformations would be
+    controlled by the preview button (the 'eye' icon) in the toolbar.
 
 2)  Click the 'author' field in the target model.
 
@@ -189,7 +193,7 @@ Mapping Walk-through
   - The Target parameter label color is changed to black.
   - The Target parameter type is set to a field reference.
   - The Target parameter field is set to 'author'.
-  
+
   This transformation now represents the simplest type of mapping, from a source
   field to a target field. The representation is simple and straight-forward.
 
@@ -218,7 +222,7 @@ Mapping Walk-through
   Note, it would be useful to have a global toolbar toggle button that
   automatically hides all transformations that are not direct dependents or
   dependencies of the transformation that has focus.
- 
+
 4)  Next, I'll select the Lowercase transformation from the dropdown in the new
     transformation box.
 
@@ -297,18 +301,25 @@ Final Mapping Description
 
 You'll notice the following:
 
-- The first transformation in the final mapping, Combine, has a repeatable first
-  parameter. It requires two instances, but the user may add more using the
-  'Add <ParameterName> parameter' link below the group. The optional parameter
-  instances appear with remove icons behind them. 
+- An example of both Combine and Split are now present.
+
+- The first transformation, Combine, has a repeatable first parameter. It
+  requires two instances, but the user may add optional using the 'Add
+  <ParameterName> parameter' link below the group. The optional parameter
+  instances appear with remove icons behind them.
 
 - The Split transformation demonstrates, via its preview field, that it results
   in an array rather than splitting results directly into target fields. This
-  allows further transformations to be applied to individual items in the array,
-  which is demonstrated by the subsequent Crop transformation.
+  allows subsequent transformations to be applied to individual items in the
+  array, which is demonstrated by the Crop and later Map transformations.
 
 - The Split transformation has also been given a name by the user, and
   subsequent references to this transformation use this name rather than the
   default transformation name. This would be especially useful if multiple
   instances of a transformation, like Split, are present in the mapping and one
   or more are referenced by one or more other transformations.
+
+- The Crop and last two Map transformations have Index parameters that
+  would automatically appear after the Sourcde parameters since the selected
+  transformation is a collection. A blank index or an asterisk would indicate to
+  use the entire collection.

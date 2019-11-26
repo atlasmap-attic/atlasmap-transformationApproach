@@ -60,12 +60,17 @@ booksTargetHeader.addEventListener('mouseout', function() {
   setBooksTargetVisibility('hidden');
 });
 
+const authorPath = 'Books:bookstore/book[*]/author';
+const firstNamePath = 'Books:bookstore/book[*]/firstName';
+const lastNamePath = 'Books:bookstore/book[*]/lastName';
+const middleInitialPath = 'Books:bookstore/book[*]/middleInitial';
+
 const combineExpandedInput = "Combine( " +
-  "Source 1: 'Books:bookstore/book[*]/lastName', " +
+  "Source 1: " + lastNamePath + ", " +
   "Source 2: ', ', " +
-  "Source 3: 'Books:bookstore/book[*]/lastName', " +
+  "Source 3: " + firstNamePath + ", " +
   "Source 4: ' ', " +
-  "Source 5: 'Books:bookstore/book[*]/middleInitial', " +
+  "Source 5: " + middleInitialPath + ", " +
   "Delimiter: '' " +
 ")";
 
@@ -83,6 +88,16 @@ function setCombineControlVisibility(visibility) {
   combineAddSourceLink.style.visibility = visibility;
   combineDelimiterAddFuncIcon.style.visibility = visibility;
 }
+
+tippy('#combineSource1Input', {
+  content: lastNamePath,
+});
+tippy('#combineSource3Input', {
+  content: firstNamePath,
+});
+tippy('#combineSource5Input', {
+  content: middleInitialPath,
+});
 
 setCombineControlVisibility("hidden");
 combine.addEventListener('mouseover', function() {
@@ -108,7 +123,7 @@ combineSource1Input.addEventListener('mouseout', function() {
   lastNameSource.classList.remove('dependency');
 });
 combineSource1Input.addEventListener('focus', function() {
-  combineSource1Input.value = "Books:bookstore/book[*]/lastName";
+  combineSource1Input.value = lastNamePath;
   lastNameSource.classList.add('dependency');
 });
 combineSource1Input.addEventListener('blur', function() {
@@ -122,7 +137,7 @@ combineSource3Input.addEventListener('mouseout', function() {
   firstNameSource.classList.remove('dependency');
 });
 combineSource3Input.addEventListener('focus', function() {
-  combineSource3Input.value = "Books:bookstore/book[*]/firstName";
+  combineSource3Input.value = firstNamePath;
   firstNameSource.classList.add('dependency');
 });
 combineSource3Input.addEventListener('blur', function() {
@@ -136,7 +151,7 @@ combineSource5Input.addEventListener('mouseout', function() {
   middleInitialSource.classList.remove('dependency');
 });
 combineSource5Input.addEventListener('focus', function() {
-  combineSource5Input.value = "Books:bookstore/book[*]/middleInitial";
+  combineSource5Input.value = middleInitialPath;
   middleInitialSource.classList.add('dependency');
 });
 combineSource5Input.addEventListener('blur', function() {
@@ -144,9 +159,13 @@ combineSource5Input.addEventListener('blur', function() {
   middleInitialSource.classList.remove('dependency');
 });
 
+tippy('#lowercaseSourceInput', {
+  content: combineExpandedInput,
+});
+
 const lowercaseExpandedInput = "Lowercase( " +
-  combineExpandedInput +
-" )";
+  "Source: " + combineExpandedInput + " " +
+")";
 
 function setLowercaseControlVisibility(visibility) {
   lowercaseEditIcon.style.visibility = visibility;
@@ -187,7 +206,7 @@ lowercaseSourceInput.addEventListener('mouseout', function() {
 });
 lowercaseSourceInput.addEventListener('focus', function() {
   if (lowercaseSourceInput.value == 'author') {
-    lowercaseSourceInput.value = 'Books:bookstore/book[*]/author';
+    lowercaseSourceInput.value = authorPath;
     authorSource.classList.add('dependency');
   } else {
     lowercaseSourceInput.value = combineExpandedInput;
@@ -195,7 +214,7 @@ lowercaseSourceInput.addEventListener('focus', function() {
   }
 });
 lowercaseSourceInput.addEventListener('blur', function() {
-  if (lowercaseSourceInput.value == 'Books:bookstore/book[*]/author') {
+  if (lowercaseSourceInput.value == authorPath) {
     lowercaseSourceInput.value = 'author';
     authorSource.classList.remove('dependency');
   } else {
@@ -203,6 +222,11 @@ lowercaseSourceInput.addEventListener('blur', function() {
     combine.classList.remove('dependency');
   }
 });
+
+const map1ExpandedInput = "Map( " +
+  "Source: " + lowercaseExpandedInput + ", " +
+  "Target: " + authorPath + " " +
+")";
 
 function setMap1ControlVisibility(visibility) {
   map1EditIcon.style.visibility = visibility;
@@ -280,7 +304,7 @@ map1TargetInput.addEventListener('mouseout', function() {
       lastNameToAuthor.style.stroke = 'silver';
       middleInitialToAuthor.style.stroke = 'silver';
     }
-  } 
+  }
 });
 map1TargetInput.addEventListener('focus', function() {
   if (map1TargetInput.value != '') {
@@ -312,9 +336,16 @@ map1TargetInput.addEventListener('blur', function() {
   }
 });
 
+tippy('#map1SourceInput', {
+  content: lowercaseExpandedInput,
+});
+tippy('#map1TargetInput', {
+  content: authorPath,
+});
+
 const splitExpandedInput = "Split( " +
-  lowercaseExpandedInput +
-  ", Delimiter: ' ' " +
+  "Source: " + lowercaseExpandedInput + ", " +
+  "Delimiter: ' ' " +
 ")";
 
 function setSplitControlVisibility(visibility) {
@@ -328,28 +359,24 @@ setSplitControlVisibility("hidden");
 split.addEventListener('mouseover', function() {
   setSplitControlVisibility("visible");
   crop.classList.add('dependent');
-  map2.classList.add('dependent');
   map3.classList.add('dependent');
   map4.classList.add('dependent');
 });
 split.addEventListener('mouseout', function() {
   setSplitControlVisibility("hidden");
   crop.classList.remove('dependent');
-  map2.classList.remove('dependent');
   map3.classList.remove('dependent');
   map4.classList.remove('dependent');
 });
 split.addEventListener('focus', function() {
   setSplitControlVisibility("visible");
   crop.classList.add('dependent');
-  map2.classList.add('dependent');
   map3.classList.add('dependent');
   map4.classList.add('dependent');
 }, true);
 split.addEventListener('blur', function() {
   setSplitControlVisibility("hidden");
   crop.classList.remove('dependent');
-  map2.classList.remove('dependent');
   map3.classList.remove('dependent');
   map4.classList.remove('dependent');
 }, true);
@@ -368,9 +395,13 @@ splitSourceInput.addEventListener('blur', function() {
   lowercase.classList.remove('dependency');
 });
 
+tippy('#splitSourceInput', {
+  content: lowercaseExpandedInput,
+});
+
 const cropExpandedInput = "Crop( " +
-  splitExpandedInput +
-  ", From: End, " +
+  "Source: " + splitExpandedInput + "[1], " +
+  "From: End, " +
   "Characters: 1 " +
 ")";
 
@@ -384,15 +415,19 @@ function setCropControlVisibility(visibility) {
 setCropControlVisibility("hidden");
 crop.addEventListener('mouseover', function() {
   setCropControlVisibility("visible");
+  map2.classList.add('dependent');
 });
 crop.addEventListener('mouseout', function() {
   setCropControlVisibility("hidden");
+  map2.classList.remove('dependent');
 });
 crop.addEventListener('focus', function() {
   setCropControlVisibility("visible");
+  map2.classList.add('dependent');
 }, true);
 crop.addEventListener('blur', function() {
   setCropControlVisibility("hidden");
+  map2.classList.remove('dependent');
 }, true);
 cropSourceInput.addEventListener('mouseover', function() {
   split.classList.add('dependency');
@@ -409,6 +444,15 @@ cropSourceInput.addEventListener('blur', function() {
   split.classList.remove('dependency');
 });
 
+tippy('#cropSourceInput', {
+  content: splitExpandedInput + '[1]',
+});
+
+const map2ExpandedInput = "Map( " +
+  "Source: " + cropExpandedInput + ", " +
+  "Target: " + lastNamePath + " " +
+")";
+
 function setMap2ControlVisibility(visibility) {
   map2EditIcon.style.visibility = visibility;
   map2RemoveIcon.style.visibility = visibility;
@@ -418,19 +462,15 @@ function setMap2ControlVisibility(visibility) {
 setMap2ControlVisibility("hidden");
 map2.addEventListener('mouseover', function() {
   setMap2ControlVisibility("visible");
-  mapIf.classList.add('dependent');
 });
 map2.addEventListener('mouseout', function() {
   setMap2ControlVisibility("hidden");
-  mapIf.classList.remove('dependent');
 });
 map2.addEventListener('focus', function() {
   setMap2ControlVisibility("visible");
-  mapIf.classList.add('dependent');
 }, true);
 map2.addEventListener('blur', function() {
   setMap2ControlVisibility("hidden");
-  mapIf.classList.remove('dependent');
 }, true);
 map2SourceInput.addEventListener('mouseover', function() {
   crop.classList.add('dependency');
@@ -479,6 +519,18 @@ map2TargetInput.addEventListener('blur', function() {
   middleInitialToLastName.style.stroke = 'silver';
 });
 
+tippy('#map2SourceInput', {
+  content: cropExpandedInput,
+});
+tippy('#map2TargetInput', {
+  content: lastNamePath,
+});
+
+const map3ExpandedInput = "Map( " +
+  "Source: " + splitExpandedInput + ", " +
+  "Target: " + firstNamePath + " " +
+")";
+
 function setMap3ControlVisibility(visibility) {
   map3EditIcon.style.visibility = visibility;
   map3RemoveIcon.style.visibility = visibility;
@@ -488,19 +540,15 @@ function setMap3ControlVisibility(visibility) {
 setMap3ControlVisibility("hidden");
 map3.addEventListener('mouseover', function() {
   setMap3ControlVisibility("visible");
-  mapIf.classList.add('dependent');
 });
 map3.addEventListener('mouseout', function() {
   setMap3ControlVisibility("hidden");
-  mapIf.classList.remove('dependent');
 });
 map3.addEventListener('focus', function() {
   setMap3ControlVisibility("visible");
-  mapIf.classList.add('dependent');
 }, true);
 map3.addEventListener('blur', function() {
   setMap3ControlVisibility("hidden");
-  mapIf.classList.remove('dependent');
 }, true);
 map3SourceInput.addEventListener('mouseover', function() {
   split.classList.add('dependency');
@@ -549,6 +597,18 @@ map3TargetInput.addEventListener('blur', function() {
   middleInitialToFirstName.style.stroke = 'silver';
 });
 
+tippy('#map3SourceInput', {
+  content: splitExpandedInput + '[2]',
+});
+tippy('#map3TargetInput', {
+  content: firstNamePath,
+});
+
+const map4ExpandedInput = "Map( " +
+  "Source: " + splitExpandedInput + ", " +
+  "Target: " + middleInitialPath + " " +
+")";
+
 function setMap4ControlVisibility(visibility) {
   map4EditIcon.style.visibility = visibility;
   map4RemoveIcon.style.visibility = visibility;
@@ -558,19 +618,15 @@ function setMap4ControlVisibility(visibility) {
 setMap4ControlVisibility("hidden");
 map4.addEventListener('mouseover', function() {
   setMap4ControlVisibility("visible");
-  mapIf.classList.add('dependent');
 });
 map4.addEventListener('mouseout', function() {
   setMap4ControlVisibility("hidden");
-  mapIf.classList.remove('dependent');
 });
 map4.addEventListener('focus', function() {
   setMap4ControlVisibility("visible");
-  mapIf.classList.add('dependent');
 }, true);
 map4.addEventListener('blur', function() {
   setMap4ControlVisibility("hidden");
-  mapIf.classList.remove('dependent');
 }, true);
 map4SourceInput.addEventListener('mouseover', function() {
   split.classList.add('dependency');
@@ -619,19 +675,19 @@ map4TargetInput.addEventListener('blur', function() {
   middleInitialToMiddleInitial.style.stroke = 'silver';
 });
 
+tippy('#map4SourceInput', {
+  content: splitExpandedInput + '[3]',
+});
+tippy('#map4TargetInput', {
+  content: middleInitialPath,
+});
+
 function setMapIfControlVisibility(visibility) {
   mapIfEditIcon.style.visibility = visibility;
   mapIfRemoveIcon.style.visibility = visibility;
   mapIfConditionAddFuncIcon.style.visibility = visibility;
   mapIfThenAddFuncIcon.style.visibility = visibility;
-  mapIfElse1AddFuncIcon.style.visibility = visibility;
-  mapIfElse1RemoveIcon.style.visibility = visibility;
-  mapIfElse2AddFuncIcon.style.visibility = visibility;
-  mapIfElse2RemoveIcon.style.visibility = visibility;
-  mapIfElse3AddFuncIcon.style.visibility = visibility;
-  mapIfElse3RemoveIcon.style.visibility = visibility;
   mapIfAddThenLink.style.visibility = visibility;
-  mapIfAddElseLink.style.visibility = visibility;
 }
 
 setMapIfControlVisibility("hidden");
@@ -660,16 +716,23 @@ mapIfThenInput.addEventListener('blur', function() {
   map1.classList.remove('dependency');
 });
 
+tippy('#mapIfConditionInput', {
+  content: 'someBooleanProp = true',
+});
+tippy('#mapIfThenInput', {
+  content: map1ExpandedInput,
+});
+
 authorSource.addEventListener('click', function() {
   authorSource.classList.add('fieldSelected');
   mapping.style.visibility = 'visible';
   map1SourceDropdown.value = '/';
   map1SourceInput.value = 'author';
+  map1SourceInput._tippy.setContent(authorPath);
   map1TargetLabel.style.color = 'red';
   map1TargetInput.value = '';
+  map1TargetInput._tippy.disable();
   map1TargetInput.focus();
-  map1SourceToolTip.innerHTML = 'Books:bookstore/book[*]/author';
-  map1TargetToolTip.style.visibility = 'hidden';
   map1Preview.value = "'John H. Doe'";
 });
 
@@ -679,7 +742,7 @@ function addLowercase() {
   lowercaseFuncDropdown.focus();
   map1SourceDropdown.value = 'f';
   map1SourceInput.value = '';
-  map1SourceToolTip.style.visibility = 'hidden';
+  map1SourceInput._tippy.disable();
 }
 
 authorTarget.addEventListener('click', function() {
@@ -697,23 +760,24 @@ authorTarget.addEventListener('click', function() {
   authorToAuthor.style.visibility = 'visible';
   map1TargetLabel.style.color = 'black';
   map1TargetInput.value = 'author';
-  map1TargetToolTip.style.visibility = 'visible';
+  map1TargetInput._tippy.enable();
   map1SourceAddFuncIcon.addEventListener('click', addLowercase);
 });
+
+const walkthroughLowercaseExpandedInput = "Lowercase( " +
+  "Source: " + authorPath +  " " +
+")";
 
 lowercaseFuncDropdown.addEventListener('change', function() {
   lowercaseTable.style.display = 'block';
   lowercaseSourceDropdown.value = '/';
   lowercaseSourceInput.value = 'author';
+  lowercaseSourceInput._tippy.setContent(authorPath);
   lowercaseSourceDropdown.focus();
-  lowercaseSourceToolTip.innerHTML = 'Books:bookstore/book[*]/author';
   lowercasePreview.value = "'john h. doe'";
   map1SourceInput.value = 'Lowercase(...)';
-  const lowercaseExpandedInput = "Lowercase( " +
-    "Source: 'Books:bookstore/book[*]/author' " +
-  ")";
-  map1SourceToolTip.innerHTML = lowercaseExpandedInput;
-  map1SourceToolTip.style.visibility = 'visible';
+  map1SourceInput._tippy.setContent(walkthroughLowercaseExpandedInput);
+  map1SourceInput._tippy.enable();
   map1Preview.value = "'john h. doe'";
   map1SourceAddFuncIcon.removeEventListener('click', addLowercase);
   map1SourceAddFuncIcon.addEventListener('click', function() {
@@ -723,26 +787,40 @@ lowercaseFuncDropdown.addEventListener('change', function() {
     map1.style.order = 10;
     map1SourceDropdown.value = 'f';
     map1SourceInput.value = '';
-    map1SourceToolTip.style.visibility = 'hidden';
+    map1SourceInput._tippy.disable();
   });
-  map1SourceToolTip.style.visibility = 'hidden';
 });
 
 mapIfFuncDropdown.addEventListener('change', function() {
-  map1SourceToolTip.style.visibility = 'visible';
   map1.style.order = null;
   map1SourceInput.value = 'Lowercase(...)';
+  map1SourceInput._tippy.enable();
   mapIfTable.style.display = 'block';
-  mapIfConditionTooltip.style.visibility = 'hidden';
   mapIfConditionDropdown.value = '/';
   mapIfConditionInput.value = '';
+  mapIfConditionInput._tippy.disable();
   mapIfConditionDropdown.focus();
-  mapIfConditionTooltip.style.visibility = 'hidden';
+  mapIfThenInput._tippy.setContent("Map( " +
+    "Source: " + walkthroughLowercaseExpandedInput + ", " +
+    "Target: " + authorPath + " " +
+  ")");
 });
 
 function handleTooltip() {
   mapIfConditionInput.value = 'someBooleanProp';
-  mapIfConditionInput._tippy.hide();
+  const tooltip = mapIfConditionInput._tippy;
+  // tooltip.hide();
+  tooltip.setContent('someBooleanProp = true');
+  tooltip.setProps({
+    arrow: true,
+    distance: 10,
+    interactive: false,
+    interactiveBorder: 2,
+    // trigger: 'focus',
+    placement: 'top',
+    theme: '',
+  });
+  mapIfConditionInput._tippy.enable();
   mapIfConditionInput.addEventListener('mouseover', function() {
     someBooleanProp.classList.add('dependency');
   });
@@ -758,16 +836,18 @@ function handleTooltip() {
 }
 
 mapIfConditionDropdown.addEventListener('change', function() {
-  tippy('#mapIfConditionInput', {
-    content: '<span onclick="handleTooltip()">someBooleanProp</span>',
-    placement: 'bottom',
+  const tooltip = mapIfConditionInput._tippy;
+  tooltip.setContent('<span onclick="handleTooltip()">someBooleanProp</span>');
+  tooltip.setProps({
     arrow: false,
     distance: 0,
     interactive: true,
     interactiveBorder: 5,
-    trigger: 'focus',
+    // trigger: 'focus',
+    placement: 'bottom',
     theme: 'contentAssist',
-  })[0];
+  });
+  tooltip.enable();
   mapIfConditionInput.focus();
 });
 
@@ -779,7 +859,7 @@ mappingsHeader.addEventListener('click', function() {
   authorSourceMapIcon.style.visibility = 'hidden';
   firstNameSourceMapIcon.style.visibility = 'visible';
   lastNameSourceMapIcon.style.visibility = 'visible';
-  middleInitialSourceMapIcon.style.visibility = 'visible';        
+  middleInitialSourceMapIcon.style.visibility = 'visible';
   bookstoreTargetMapIcon.style.visibility = 'visible';
   bookTargetMapIcon.style.visibility = 'visible';
   authorTarget.classList.add('fieldSelected');
@@ -794,16 +874,17 @@ mappingsHeader.addEventListener('click', function() {
   lowercaseTable.style.display = 'block';
   lowercaseSourceDropdown.value = 'f';
   lowercaseSourceInput.value = 'Combine(...)';
-  lowercaseSourceToolTip.innerHTML = combineExpandedInput;
+  lowercaseSourceInput._tippy.setContent(combineExpandedInput);
   lowercasePreview.value = "'doe, john h.'";
   map1.style.order = null;
   map1SourceDropdown.value = 'f';
   map1SourceInput.value = 'Lowercase(...)';
-  map1SourceToolTip.innerHTML = lowercaseExpandedInput;
-  map1SourceToolTip.style.visibility = 'visible';
+  map1SourceInput._tippy.setContent(lowercaseExpandedInput);
+  map1SourceInput._tippy.enable();
   map1TargetLabel.style.color = 'black';
   map1TargetInput.value = 'author';
-  map1TargetToolTip.style.visibility = 'visible';
+  map1TargetInput._tippy.setContent(authorPath);
+  map1TargetInput._tippy.enable();
   map1Preview.value = "'doe, john h.'";
   split.style.display = "block";
   crop.style.display = "block";
@@ -815,6 +896,18 @@ mappingsHeader.addEventListener('click', function() {
   mapIfTable.style.display = 'block';
   mapIfConditionDropdown.value = '$';
   mapIfConditionInput.value = 'someBooleanProp';
+  const tooltip = mapIfConditionInput._tippy;
+  tooltip.setContent('someBooleanProp = true');
+  tooltip.setProps({
+    arrow: true,
+    distance: 10,
+    interactive: false,
+    interactiveBorder: 2,
+    // trigger: 'focus',
+    placement: 'top',
+    theme: '',
+  });
+  tooltip.enable();
   mapIfConditionInput.addEventListener('mouseover', function() {
     someBooleanProp.classList.add('dependency');
   });
@@ -827,46 +920,7 @@ mappingsHeader.addEventListener('click', function() {
   mapIfConditionInput.addEventListener('blur', function() {
     someBooleanProp.classList.remove('dependency');
   });
-  mapIfElse1Input.addEventListener('mouseover', function() {
-    map2.classList.add('dependency');
-  });
-  mapIfElse1Input.addEventListener('mouseout', function() {
-    map2.classList.remove('dependency');
-  });
-  mapIfElse1Input.addEventListener('focus', function() {
-    map2.classList.add('dependency');
-  });
-  mapIfElse1Input.addEventListener('blur', function() {
-    map2.classList.remove('dependency');
-  });
-  mapIfElse2Input.addEventListener('mouseover', function() {
-    map3.classList.add('dependency');
-  });
-  mapIfElse2Input.addEventListener('mouseout', function() {
-    map3.classList.remove('dependency');
-  });
-  mapIfElse2Input.addEventListener('focus', function() {
-    map3.classList.add('dependency');
-  });
-  mapIfElse2Input.addEventListener('blur', function() {
-    map3.classList.remove('dependency');
-  });
-  mapIfElse3Input.addEventListener('mouseover', function() {
-    map4.classList.add('dependency');
-  });
-  mapIfElse3Input.addEventListener('mouseout', function() {
-    map4.classList.remove('dependency');
-  });
-  mapIfElse3Input.addEventListener('focus', function() {
-    map4.classList.add('dependency');
-  });
-  mapIfElse3Input.addEventListener('blur', function() {
-    map4.classList.remove('dependency');
-  });
-  mapIfConditionTooltip.style.visibility = 'visible';
-  mapIfElse1.style.display = 'table-row';
-  mapIfElse2.style.display = 'table-row';
-  mapIfElse3.style.display = 'table-row';
+  mapIfThenInput._tippy.setContent(map1ExpandedInput);
 
   svg.style.width = connectors.clientWidth;
   svg.style.height = connectors.clientHeight;

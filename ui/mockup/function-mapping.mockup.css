@@ -60,6 +60,11 @@ expander {
   padding-left: 5px;
 }
 
+.fa-eye {
+  align-self: center;
+  color: dodgerblue;
+}
+
 .fa-layers {
   align-self: center;
 }
@@ -218,35 +223,6 @@ td {
 
 .toolBar * {
   padding: 5px 0px 5px 5px;
-}
-
-.tooltipTarget {
-  position: relative;
-  visibility: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.tooltipTarget .tooltip {
-  visibility: hidden;
-  width: 300px;
-  background-color: palegoldenrod;
-  color: black;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  position: absolute;
-  z-index: 1;
-  top: -5px;
-  left: 105%;
-  opacity: 0;
-  transition: opacity 1s;
-  transition-delay: .5s;
-}
-
-.tooltipTarget:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
 }
 
 .treeHeader {
